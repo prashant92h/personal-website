@@ -1,0 +1,309 @@
+
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const experience = [
+  {
+    company: "IBM",
+    role: "Senior Advisory Consultant",
+    period: "May 2021 – Present",
+description:
+  "Providing cloud architecture guidance and technical recommendations to application teams across infrastructure design, Azure services, security, automation and cost optimization. Contributing to architectural decisions and initiatives that improve scalability, operational efficiency and cloud governance.",  
+  },
+  {
+    company: "Accenture",
+    role: "Cloud Support Senior Analyst",
+    period: "June 2016 – April 2021",
+    description:
+      "Worked on Azure cloud services, Linux infrastructure, production operations, high availability and infrastructure security.",
+  },
+  {
+    company: "Hewlett Packard Enterprise",
+    role: "Application Support Engineer",
+    period: "September 2014 – June 2016",
+    description:
+      "Supported application and database environments, focusing on production support, troubleshooting and service reliability.",
+  },
+];
+
+const certifications = [
+  "Microsoft Certified: Azure Administrator Associate (AZ-104)",
+  "Microsoft Certified: Azure Solutions Architect Expert (AZ-305)",
+  "Microsoft Certified: DevOps Engineer Expert (AZ-400)",
+];
+
+const professionalAreas = [
+  "Cloud Architecture",
+  "Microsoft Azure",
+  "Azure PaaS",
+  "Linux Administration",
+  "Terraform",
+  "Azure DevOps",
+  "Packer",
+  "CI/CD",
+  "Cloud Security",
+  "Cost Optimization",
+  "Infrastructure Automation",
+];
+
+const exploringAreas = [
+  "Kubernetes",
+  "AWS",
+  "GitOps",
+  "Platform Engineering",
+  "AI Infrastructure",
+  "Agentic Automation",
+];
+---
+
+<BaseLayout
+  title="About | Prashant Hegde"
+  description="Learn about Prashant Hegde, a cloud professional with 13+ years of experience in cloud infrastructure, architecture, operations and automation."
+  active="about"
+>
+  <section class="page-intro container">
+    <p class="eyebrow">ABOUT ME</p>
+    <h1>Cloud professional.<br /><span>Curious about what comes next.</span></h1>
+    <p>
+      I'm Prashant Hegde, a technology professional with 13+ years of
+      experience across cloud infrastructure, operations and automation.
+      My work focuses on helping teams make better infrastructure decisions,
+      improve operational efficiency and build reliable cloud environments.
+    </p>
+    <p>
+      Over the years, I've worked across infrastructure operations, cloud
+      platforms, automation, security and cost optimization. I enjoy
+      understanding complex environments, identifying opportunities for
+      improvement and translating technical challenges into practical
+      recommendations.
+    </p>
+  </section>
+
+  <section class="section container">
+    <p class="eyebrow">CAREER JOURNEY</p>
+    <h2>Experience</h2>
+
+    <div class="timeline">
+      {experience.map((item) => (
+        <article class="experience-item">
+          <div class="experience-period">{item.period}</div>
+          <div class="experience-content">
+            <h3>{item.company}</h3>
+            <p class="role">{item.role}</p>
+            <p class="description">{item.description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+<section class="section container">
+  <p class="eyebrow">TECHNICAL BACKGROUND</p>
+  <h2>Areas of experience</h2>
+  <p class="section-intro">
+    Technologies and disciplines from my professional experience.
+  </p>
+
+  <div class="areas">
+    {professionalAreas.map((area) => <span>{area}</span>)}
+  </div>
+
+  <h3 class="subheading">Currently exploring</h3>
+  <p class="section-intro">
+    Technologies and practices I'm developing through hands-on learning
+    and personal projects.
+  </p>
+
+  <div class="areas exploring-areas">
+    {exploringAreas.map((area) => <span>{area}</span>)}
+  </div>
+</section>
+
+  <section class="section container">
+    <p class="eyebrow">CERTIFICATIONS</p>
+    <h2>Professional certifications</h2>
+
+    <ul class="certifications">
+      {certifications.map((certification) => (
+        <li>{certification}</li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="section container direction-section">
+    <p class="eyebrow">WHAT'S NEXT</p>
+    <h2>Continuously learning and exploring.</h2>
+    <p>
+      I'm expanding my focus beyond traditional cloud operations towards
+      cloud architecture, platform engineering and AI infrastructure.
+      I'm currently exploring Kubernetes, AWS, GitOps and AI-assisted
+      automation, with a focus on applying these technologies to practical
+      infrastructure and operations challenges.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-intro {
+    padding-top: 88px;
+    padding-bottom: 76px;
+    max-width: 1120px;
+  }
+
+  .eyebrow {
+    color: var(--color-accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    margin-bottom: 18px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-heading);
+    color: var(--color-text);
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.15;
+    letter-spacing: -0.05em;
+  }
+
+  h1 span {
+    color: var(--color-muted);
+    font-weight: 500;
+  }
+
+  .page-intro > p:not(.eyebrow) {
+    color: var(--color-muted);
+    font-size: 1.05rem;
+    line-height: 1.85;
+    max-width: 760px;
+    margin-top: 22px;
+  }
+
+  .section {
+    padding-top: 56px;
+    padding-bottom: 64px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  h2 {
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    letter-spacing: -0.04em;
+  }
+
+  .timeline {
+    margin-top: 34px;
+    max-width: 850px;
+  }
+
+  .experience-item {
+    display: grid;
+    grid-template-columns: 190px 1fr;
+    gap: 28px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .experience-period {
+    color: var(--color-muted);
+    font-size: 0.88rem;
+    padding-top: 4px;
+  }
+
+  .experience-content h3 {
+    font-size: 1.2rem;
+  }
+
+  .role {
+    color: var(--color-accent);
+    font-weight: 600;
+    margin-top: 5px;
+  }
+
+  .description {
+    color: var(--color-muted);
+    line-height: 1.75;
+    margin-top: 14px;
+  }
+
+  .section-intro {
+    color: var(--color-muted);
+    margin-top: 12px;
+    line-height: 1.7;
+  }
+
+  .areas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 26px;
+    max-width: 850px;
+  }
+
+  .areas span {
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+
+  .certifications {
+    list-style: none;
+    padding: 0;
+    margin-top: 24px;
+    max-width: 850px;
+  }
+
+  .certifications li {
+    padding: 17px 0;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text);
+    line-height: 1.6;
+  }
+
+  .direction-section {
+    padding-bottom: 100px;
+  }
+
+  .direction-section > p:last-child {
+    color: var(--color-muted);
+    line-height: 1.85;
+    max-width: 760px;
+    margin-top: 18px;
+  }
+
+  @media (max-width: 700px) {
+    .page-intro {
+      padding-top: 64px;
+      padding-bottom: 52px;
+    }
+
+    .experience-item {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+.subheading {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  color: var(--color-text);
+  margin-top: 38px;
+}
+
+.exploring-areas span {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-muted);
+}
+
+    .section {
+      padding-top: 44px;
+      padding-bottom: 48px;
+    }
+  }
+</style>
+

@@ -1,0 +1,210 @@
+
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const categories = [
+  "All",
+  "Landscapes & Nature",
+  "Wildlife",
+  "Travel",
+];
+
+// Add photographs here as the collection is ready.
+// Keep original images backed up locally and use optimized
+// cloud-hosted versions for the public website.
+const photographs: {
+  title: string;
+  category: string;
+  image: string;
+  alt: string;
+}[] = [];
+---
+
+<BaseLayout
+  title="Photography | Prashant Hegde"
+  description="A personal photography collection featuring landscapes, nature, wildlife and travel by Prashant Hegde."
+  active="photography"
+>
+  <section class="page-intro container">
+    <p class="eyebrow">PHOTOGRAPHY</p>
+    <h1>Perspectives<br /><span>beyond technology.</span></h1>
+    <p>
+      Moments, places and details captured along the way.
+      A collection of landscapes, nature, wildlife and travel.
+    </p>
+  </section>
+
+  <section class="gallery-section container">
+    <div class="category-list" aria-label="Photography categories">
+      {categories.map((category, index) => (
+        <span class:list={["category", { selected: index === 0 }]}>
+          {category}
+        </span>
+      ))}
+    </div>
+
+    {photographs.length > 0 ? (
+      <div class="photo-grid">
+        {photographs.map((photo) => (
+          <figure class="photo-card">
+            <img src={photo.image} alt={photo.alt} loading="lazy" />
+            <figcaption>
+              <strong>{photo.title}</strong>
+              <span>{photo.category}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    ) : (
+      <div class="empty-gallery">
+        <h2>A collection in the making.</h2>
+        <p>
+          Photographs from landscapes, wildlife and travels will find
+          their place here.
+        </p>
+      </div>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .page-intro {
+    padding-top: 88px;
+    padding-bottom: 64px;
+  }
+
+  .eyebrow {
+    color: var(--color-accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    margin-bottom: 18px;
+  }
+
+  h1, h2 {
+    font-family: var(--font-heading);
+    color: var(--color-text);
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.15;
+    letter-spacing: -0.05em;
+  }
+
+  h1 span {
+    color: var(--color-muted);
+    font-weight: 500;
+  }
+
+  .page-intro > p:last-child {
+    color: var(--color-muted);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    max-width: 650px;
+    margin-top: 22px;
+  }
+
+  .gallery-section {
+    padding-bottom: 100px;
+  }
+
+  .category-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .category {
+    padding: 8px 14px;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    color: var(--color-muted);
+    font-size: 0.85rem;
+  }
+
+  .category.selected {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: white;
+  }
+
+  .photo-grid {
+    columns: 3;
+    column-gap: 18px;
+    padding-top: 28px;
+  }
+
+  .photo-card {
+    break-inside: avoid;
+    margin: 0 0 18px;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+  }
+
+  .photo-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .photo-card figcaption {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 14px;
+  }
+
+  .photo-card figcaption strong {
+    color: var(--color-text);
+    font-size: 0.9rem;
+  }
+
+  .photo-card figcaption span {
+    color: var(--color-muted);
+    font-size: 0.78rem;
+  }
+
+  .empty-gallery {
+    padding: 100px 20px;
+    text-align: center;
+  }
+
+  .empty-gallery h2 {
+    font-size: 1.5rem;
+  }
+
+  .empty-gallery p {
+    color: var(--color-muted);
+    line-height: 1.7;
+    max-width: 460px;
+    margin: 12px auto 0;
+  }
+
+  @media (max-width: 800px) {
+    .photo-grid {
+      columns: 2;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .page-intro {
+      padding-top: 64px;
+      padding-bottom: 48px;
+    }
+
+    .empty-gallery {
+      padding: 72px 16px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .photo-grid {
+      columns: 1;
+    }
+  }
+</style>
+

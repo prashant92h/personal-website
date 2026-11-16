@@ -1,0 +1,116 @@
+
+---
+interface Props {
+  active?: string;
+}
+
+const { active = "home" } = Astro.props;
+
+const navigation = [
+  { label: "Home", href: "/", id: "home" },
+  { label: "Projects", href: "/projects/", id: "projects" },
+  { label: "Blog", href: "/blog/", id: "blog" },
+  { label: "Photography", href: "/photography/", id: "photography" },
+  { label: "About", href: "/about/", id: "about" },
+  { label: "Contact", href: "/contact/", id: "contact" },
+];
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+<a class="brand" href="/" aria-label="Prashant Hegde home">
+  <img src="/favicon.svg" alt="" width="40" height="40" />
+  <span class="brand-name">Prashant Hegde</span>
+</a>
+    <nav aria-label="Main navigation">
+      {navigation.map((item) => (
+        <a
+          href={item.href}
+          class:list={{ active: active === item.id }}
+          aria-current={active === item.id ? "page" : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .header-inner {
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+  }
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  flex-shrink: 0;
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 750;
+  letter-spacing: -0.5px;
+  color: var(--color-text);
+}
+
+.brand img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.brand-name {
+  white-space: nowrap;
+}
+  .brand span {
+    color: var(--color-accent);
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+  }
+
+  nav a {
+    color: var(--color-muted);
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: color var(--transition);
+  }
+
+  nav a:hover,
+  nav a.active {
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 760px) {
+    .header-inner {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 12px;
+      padding-block: 15px;
+    }
+
+    nav {
+      width: 100%;
+      gap: 22px;
+      overflow-x: auto;
+      padding-bottom: 3px;
+    }
+  }
+</style>
+

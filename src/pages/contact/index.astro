@@ -1,0 +1,151 @@
+
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const contactLinks = [
+  {
+    title: "LinkedIn",
+    description: "Connect with me professionally and follow my work.",
+    label: "Visit LinkedIn",
+    href: "https://www.linkedin.com/in/hegde-prashant",
+  },
+  {
+    title: "GitHub",
+    description: "Explore my projects, code and technical experiments.",
+    label: "View GitHub",
+    href: "https://github.com/prashant92h",
+  },
+];
+---
+
+<BaseLayout
+  title="Contact | Prashant Hegde"
+  description="Get in touch with Prashant Hegde for professional conversations, technical collaboration and interesting opportunities."
+  active="contact"
+>
+  <section class="contact-intro container">
+    <p class="eyebrow">GET IN TOUCH</p>
+    <h1>Let's start a<br /><span>conversation.</span></h1>
+    <p>
+      Interested in cloud architecture, platform engineering, technology
+      or a potential collaboration? I'd be happy to connect.
+    </p>
+  </section>
+
+  <section class="contact-section container">
+    <div class="contact-grid">
+      {contactLinks.map((link) => (
+        <a
+          class="contact-card"
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div>
+            <h2>{link.title}</h2>
+            <p>{link.description}</p>
+          </div>
+          <span>{link.label} <span aria-hidden="true">↗</span></span>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-intro {
+    padding-top: 112px;
+    padding-bottom: 72px;
+    max-width: 1120px;
+  }
+
+  .eyebrow {
+    color: var(--color-accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    margin-bottom: 18px;
+  }
+
+  h1,
+  h2 {
+    font-family: var(--font-heading);
+    color: var(--color-text);
+  }
+
+  h1 {
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    line-height: 1.12;
+    letter-spacing: -0.05em;
+  }
+
+  h1 span {
+    color: var(--color-muted);
+    font-weight: 500;
+  }
+
+  .contact-intro > p:last-child {
+    color: var(--color-muted);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    max-width: 620px;
+    margin-top: 24px;
+  }
+
+  .contact-section {
+    padding-bottom: 120px;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    max-width: 850px;
+  }
+
+  .contact-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 190px;
+    padding: 28px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    transition: var(--transition);
+  }
+
+  .contact-card:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-3px);
+  }
+
+  .contact-card h2 {
+    font-size: 1.3rem;
+  }
+
+  .contact-card p {
+    color: var(--color-muted);
+    line-height: 1.7;
+    margin-top: 10px;
+  }
+
+  .contact-card > span {
+    color: var(--color-accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 28px;
+  }
+
+  @media (max-width: 700px) {
+    .contact-intro {
+      padding-top: 76px;
+      padding-bottom: 52px;
+    }
+
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+

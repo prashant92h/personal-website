@@ -147,3 +147,9 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# Local AI development instructions
+AGENTS.md
+
+# Local backups
+*.astro.backup

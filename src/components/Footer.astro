@@ -1,0 +1,52 @@
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>© {new Date().getFullYear()} Prashant Hegde</span>
+
+    <div class="footer-links">
+      <a href="https://github.com/prashant92h" target="_blank" rel="noreferrer">
+        GitHub ↗
+      </a>
+      <a href="https://www.linkedin.com/in/hegde-prashant" target="_blank" rel="noreferrer">
+        LinkedIn ↗
+      </a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: 64px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .footer-inner {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    color: var(--color-muted);
+    font-size: 12px;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 22px;
+  }
+
+  .footer-links a:hover {
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 480px) {
+    .footer-inner {
+      align-items: flex-start;
+      flex-direction: column;
+      justify-content: center;
+      padding-block: 18px;
+      gap: 10px;
+    }
+  }
+</style>
+

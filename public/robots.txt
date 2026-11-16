@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://prashanthegde.in/sitemap.xml
