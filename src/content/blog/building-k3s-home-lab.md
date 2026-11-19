@@ -9,7 +9,7 @@ tags:
   - Linux
   - Home Lab
 featured: true
-draft: true
+draft: false
 ---
 
 My day job is architecting and operating Azure and Linux workloads that stay cost-efficient, secure and available. The home lab is where I get to tinker with Kubernetes, self-hosting, Terraform and GitOps.

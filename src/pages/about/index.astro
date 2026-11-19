@@ -11,7 +11,7 @@ const experience = [
     period: "May 2021 – Present",
     current: true,
     description:
-      "Supporting 50+ enterprise applications on Azure and Azure DevOps across architecture and modernization, cost optimization, security, reliability, Linux server operations and automation, working with Terraform-managed environments. Carries team-lead responsibilities alongside technical architecture work.",
+      "Supporting 50+ enterprise applications on Azure and Azure DevOps across architecture and modernization, cost optimization, security, reliability, Linux server operations and automation, working with Terraform-managed environments. Carries tech lead responsibilities alongside technical architecture work.",
   },
   {
     company: "Accenture",
@@ -30,9 +30,10 @@ const experience = [
 ];
 
 const certifications = [
-  { name: "Azure Administrator Associate", code: "AZ-104", level: "Associate" },
-  { name: "Azure Solutions Architect Expert", code: "AZ-305", level: "Expert" },
-  { name: "DevOps Engineer Expert", code: "AZ-400", level: "Expert" },
+  { issuer: "Microsoft Certified", name: "Azure Solutions Architect Expert", code: "AZ-305", level: "Expert" },
+  { issuer: "Microsoft Certified", name: "DevOps Engineer Expert", code: "AZ-400", level: "Expert" },
+  { issuer: "Microsoft Certified", name: "Azure Administrator Associate", code: "AZ-104", level: "Associate" },
+  { issuer: "AWS Certified", name: "SysOps Administrator – Associate", code: "", level: "Associate" },
 ];
 
 const skillGroups = [
@@ -148,14 +149,11 @@ const growingAreas = ["AI agents", "GitHub Copilot", "GitOps", "AWS fundamentals
       {certifications.map((cert, i) => (
         <div class="card reveal" style={`--d:${i}`}>
           <span class="pill pill-live cert-level">{cert.level}</span>
-          <h3>Microsoft Certified:<br />{cert.name}</h3>
-          <p class="code">{cert.code}</p>
+          <h3>{cert.issuer}:<br />{cert.name}</h3>
+          {cert.code && <p class="code">{cert.code}</p>}
         </div>
       ))}
     </div>
-    <p class="aws-cert reveal">
-      Additional: <strong>AWS Certified SysOps Administrator – Associate</strong>
-    </p>
   </section>
 
   <section class="container">
@@ -325,17 +323,6 @@ const growingAreas = ["AI agents", "GitHub Copilot", "GitOps", "AWS fundamentals
 
   .card h3 {
     font-size: 1.1rem;
-  }
-
-  .aws-cert {
-    margin: 24px 0 0;
-    color: var(--muted);
-    font-size: 0.92rem;
-  }
-
-  .aws-cert strong {
-    color: var(--text);
-    font-weight: 600;
   }
 
   /* Next */
