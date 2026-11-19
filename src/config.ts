@@ -1,9 +1,9 @@
 export const SITE = {
   name: "Prashant Hegde",
   url: "https://prashanthegde.in",
-  tagline: "Azure Infrastructure & DevOps Architect",
+  tagline: "Azure Cloud & Platform Architect",
   description:
-    "Prashant Hegde — Azure infrastructure and DevOps architect advising 50+ applications on cost, security, availability and optimisation. Home-lab tinkerer and amateur photographer.",
+    "Prashant Hegde — hands-on Azure cloud and platform architect with strong Azure and Linux expertise, working across infrastructure, DevOps, security, reliability and FinOps for 50+ enterprise applications. Home-lab tinkerer and amateur photographer.",
   jobTitle: "Senior Advisory Consultant",
   employer: { name: "IBM", url: "https://www.ibm.com" },
   ogImage: "/og-image.png",
@@ -14,13 +14,17 @@ export const SITE = {
   },
   knowsAbout: [
     "Microsoft Azure",
-    "Cloud Architecture",
-    "Cloud Cost Optimization",
-    "Cloud Security",
-    "High Availability",
-    "Azure DevOps",
-    "Terraform",
     "Linux",
+    "Cloud Architecture",
+    "Azure Networking",
+    "Cloud Cost Optimization",
+    "FinOps",
+    "Cloud Security",
+    "Disaster Recovery",
+    "Azure DevOps",
+    "Platform Engineering",
+    "Kubernetes",
+    "Terraform",
   ],
 } as const;
 

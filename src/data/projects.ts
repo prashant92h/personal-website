@@ -1,4 +1,5 @@
 // Single source of truth for project content (used by Home, Projects and Lab).
+// Keep client details generic — no customer or application names.
 
 export interface Project {
   title: string;
@@ -6,46 +7,58 @@ export interface Project {
   areas: string[];
   status?: "In progress" | "Exploring";
   metric?: { value: string; label: string };
+  /** Optional case-study structure, used only where the facts are known. */
+  story?: { challenge: string; approach: string; impact: string };
 }
 
 export const professionalProjects: Project[] = [
   {
-    title: "Run-state Architecture Advisory",
+    title: "Cloud Cost Optimization (FinOps)",
     description:
-      "Architect and advisor for 50+ production applications on Azure — reviewing infrastructure and DevOps design so workloads stay efficient, secure and available long after go-live.",
-    areas: ["Azure", "Azure DevOps", "Linux", "Architecture Reviews"],
-    metric: { value: "50+", label: "applications · infrastructure & DevOps" },
+      "Identified and implemented Azure optimization opportunities across production and non-production environments, including compute right-sizing, storage optimization, scheduling, reservation opportunities, unused-resource cleanup and architecture changes. These initiatives have contributed to more than $1M in cumulative cloud cost savings.",
+    areas: ["FinOps", "Right-sizing", "Reservations", "Storage optimization", "Scheduling"],
+    metric: { value: "$1M+", label: "cumulative cloud cost savings" },
+    story: {
+      challenge:
+        "Keeping the cost of a large Azure estate, spanning production and non-production environments, efficient as it grows and changes.",
+      approach:
+        "Cost analysis, compute right-sizing, storage and service-tier optimization, workload scheduling, reservation strategy, unused-resource cleanup and architecture changes.",
+      impact:
+        "Contributed to more than $1M in cumulative cloud cost savings, as the combined result of multiple optimization initiatives rather than a single technique.",
+    },
   },
   {
-    title: "Cost Optimization",
+    title: "Azure Architecture & Operations",
     description:
-      "Ongoing utilisation reviews, right-sizing and service-tier recommendations that reduce the cost of running applications without compromising performance.",
-    areas: ["Cost Optimization", "Right-sizing", "Azure Cost Management"],
-    metric: { value: "$500K+", label: "cumulative savings · 3 years" },
+      "Architecture and operational guidance for 50+ enterprise applications on Azure, covering compute, networking, storage, Linux, identity, Kubernetes and managed services, with an emphasis on designs that stay practical to operate after go-live.",
+    areas: ["Azure", "Linux", "Azure networking", "AKS / Kubernetes", "Identity"],
+    metric: { value: "50+", label: "enterprise applications" },
   },
   {
-    title: "Security & Vulnerability Management",
+    title: "Infrastructure Assessment & Modernization",
     description:
-      "Architectural guidance on keeping live infrastructure secure — vulnerability remediation, hardening, patching and alignment with security best practices.",
-    areas: ["Cloud Security", "Vulnerability Management", "Hardening"],
+      "Assessing large Azure environments, hundreds of resources at a time, and identifying architecture, security, reliability and cost improvements for production estates.",
+    areas: ["Architecture reviews", "Modernization", "Azure", "Linux"],
+    metric: { value: "100s", label: "of Azure resources" },
   },
   {
-    title: "Availability & Resilience",
+    title: "Operational Automation",
     description:
-      "Reviewing redundancy, backup and recovery design so applications stay available through failures and planned maintenance.",
-    areas: ["High Availability", "Backup & Recovery", "Resilience"],
+      "Automating repetitive operational work across hundreds of Linux servers so routine operations are repeatable and controlled.",
+    areas: ["Linux", "Automation", "Cloud operations"],
+    metric: { value: "100s", label: "of Linux servers" },
   },
   {
-    title: "Azure DevOps Pipelines & Standardisation",
+    title: "Security & Reliability",
     description:
-      "Standardised, repeatable build and deployment pipelines in Azure DevOps, with Terraform used for consistent infrastructure provisioning.",
-    areas: ["Azure DevOps", "CI/CD", "Terraform (basics)", "Standardisation"],
+      "Azure and Linux security, identity, networking, vulnerability remediation, patching, SSH access, TLS and certificate management, backup, disaster recovery and resilient infrastructure patterns for production workloads.",
+    areas: ["Security", "Vulnerability remediation", "Patching", "TLS / certificates", "Disaster recovery"],
   },
   {
-    title: "Linux Operations",
+    title: "Platform Engineering & Azure DevOps",
     description:
-      "Supporting Linux-based workloads: patching, hardening, troubleshooting and keeping servers healthy in production.",
-    areas: ["Linux", "Patching", "Troubleshooting"],
+      "Azure DevOps, CI/CD and infrastructure automation, working with and managing Terraform-based infrastructure for repeatable and controlled operations.",
+    areas: ["Azure DevOps", "CI/CD", "Terraform (managing)", "Platform engineering"],
   },
 ];
 
@@ -60,15 +73,15 @@ export const personalProjects: Project[] = [
   {
     title: "Terraform & GitOps Practice",
     description:
-      "Going beyond Terraform basics — Git-driven infrastructure, automated deployments and reproducible environments in the lab.",
+      "Building on my experience managing Terraform-based infrastructure by practising Git-driven workflows and reproducible environments in the lab.",
     areas: ["Terraform", "Git", "GitOps", "CI/CD"],
     status: "Exploring",
   },
   {
-    title: "AI-assisted Automation",
+    title: "AI Agents & GitHub Copilot",
     description:
-      "Trying AI-assisted and agentic tooling to cut repetitive operations work and speed up infrastructure troubleshooting.",
-    areas: ["AI", "GitHub Copilot", "Agentic Automation", "DevOps"],
+      "Learning by building: using GitHub Copilot and related tooling to build and customize AI agents, and exploring where they can help with cloud operations tasks.",
+    areas: ["AI agents", "GitHub Copilot", "Cloud operations"],
     status: "Exploring",
   },
   {
@@ -80,9 +93,61 @@ export const personalProjects: Project[] = [
   },
 ];
 
+/** Homepage "what I do" cards. */
+export const capabilities = [
+  {
+    title: "Cloud architecture & modernization",
+    text: "Architecture reviews and modernization across Azure compute, networking, storage, Linux, identity, Kubernetes and managed services, with an emphasis on designs that remain practical to operate after go-live.",
+    icon: "M3 17a4 4 0 0 1 1-7.9 5.5 5.5 0 0 1 10.7-1A4.5 4.5 0 1 1 17 17z",
+  },
+  {
+    title: "FinOps & optimization",
+    text: "Azure cost analysis, right-sizing, service-tier optimization, storage optimization, workload scheduling, reservation strategy, resource cleanup and architecture changes that have contributed to more than $1M in cumulative cloud cost savings.",
+    icon: "M3 3v18h18M7 14l4-4 3 3 5-6",
+  },
+  {
+    title: "Security & reliability",
+    text: "Azure and Linux security, identity, networking, vulnerability remediation, patching, TLS/certificate management, backup, disaster recovery and resilient infrastructure patterns for production workloads.",
+    icon: "M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z",
+  },
+  {
+    title: "Platform engineering & automation",
+    text: "Azure DevOps, CI/CD, infrastructure automation and Terraform-managed environments, working with and managing Terraform-based infrastructure with a focus on repeatable and controlled operations.",
+    icon: "M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16",
+  },
+];
+
+/** Homepage "selected work / impact" tiles. */
+export const impact = [
+  { value: "50+", label: "enterprise applications", title: "Azure Architecture & Operations", text: "Architecture guidance and operational improvements across a large estate of production applications." },
+  { value: "$1M+", label: "cumulative cloud cost savings", title: "Cloud Cost Optimization", text: "FinOps analysis, right-sizing, scheduling and architecture changes across production and non-production." },
+  { value: "100s", label: "of Azure resources", title: "Infrastructure Assessment & Modernization", text: "Assessing large Azure environments to find architecture, security and cost improvements." },
+  { value: "100s", label: "of Linux servers", title: "Operational Automation", text: "Making routine Linux operations repeatable and controlled through automation." },
+];
+
+/** Homepage "what I'm exploring". Set `href` when a project is ready to link. */
+export const exploring: {
+  title: string;
+  text: string;
+  tags: string[];
+  href?: string;
+} = {
+  title: "Agentic AI for cloud operations",
+  text: "I'm exploring how AI agents can help solve practical cloud operations problems, from infrastructure assessment and patching to incident triage, cost optimization and certificate lifecycle management. I've also been gaining hands-on experience using GitHub Copilot to build and customize AI agents.",
+  tags: [
+    "AI agents",
+    "GitHub Copilot",
+    "Infrastructure assessment",
+    "Patching",
+    "Incident triage",
+    "Cost optimization",
+    "Certificate lifecycle",
+  ],
+  href: undefined,
+};
+
 export const stats = [
-  { value: "50+", label: "Applications advised on infrastructure & DevOps" },
-  { value: "$500K+", label: "Cumulative cloud cost savings" },
+  { value: "50+", label: "Enterprise applications" },
+  { value: "$1M+", label: "Cumulative cloud cost savings" },
   { value: "13+", label: "Years in cloud & infrastructure" },
-  { value: "3", label: "Microsoft Azure certifications" },
 ];

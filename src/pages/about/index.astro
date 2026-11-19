@@ -11,7 +11,7 @@ const experience = [
     period: "May 2021 – Present",
     current: true,
     description:
-      "Infrastructure and DevOps architect for 50+ applications on Azure and Azure DevOps. Advising application teams on keeping live environments cost-efficient, secure, optimised and highly available — including utilisation reviews, vulnerability remediation, pipeline standardisation and Terraform-based provisioning.",
+      "Hands-on Azure cloud and platform architect supporting 50+ enterprise applications on Azure and Azure DevOps. Work spans architecture and modernization, cost optimization, security and vulnerability remediation, reliability, Linux server operations, pipeline standardisation and automation, including working with and managing Terraform-based infrastructure. Also carries team-lead responsibilities alongside technical architecture work.",
   },
   {
     company: "Accenture",
@@ -36,45 +36,45 @@ const certifications = [
 ];
 
 const skillGroups = [
-  { title: "Operate & optimise", items: ["Cost Optimization", "Right-sizing", "Cloud Security", "Vulnerability Management", "High Availability", "Backup & Recovery"] },
-  { title: "Azure & DevOps", items: ["Microsoft Azure", "Azure PaaS", "Azure DevOps", "CI/CD Pipelines", "Terraform (basics)", "Packer"] },
-  { title: "Systems", items: ["Linux Administration", "Patching", "Troubleshooting"] },
+  { title: "Azure & cloud", items: ["Microsoft Azure", "Azure PaaS", "Architecture & Modernization", "Cost Optimization (FinOps)", "High Availability", "Backup & Recovery"] },
+  { title: "Linux & systems", items: ["Linux Administration", "Production Troubleshooting", "Patching", "Vulnerability Remediation", "SSH & Access", "TLS / Certificates", "Identity Integration", "Hosting"] },
+  { title: "Platform & DevOps", items: ["Azure DevOps", "CI/CD Pipelines", "Terraform (working with & managing)", "Packer", "Kubernetes / K3s", "Automation"] },
 ];
 
-const exploringAreas = [
-  "Kubernetes",
-  "K3s",
+const growingAreas = [
+  "AWS — Foundational",
+  "GitHub Copilot",
+  "AI Agents",
+  "Kubernetes (K3s home lab)",
   "GitOps",
   "Terraform (deeper)",
-  "AWS",
-  "AI-assisted Automation",
 ];
 ---
 
 <BaseLayout
   title="About | Prashant Hegde"
-  description="Prashant Hegde is an Azure infrastructure and DevOps architect for 50+ applications, focused on cost, security, optimisation and availability. Home-lab tinkerer and amateur photographer."
+  description="Prashant Hegde is a hands-on Azure cloud and platform architect with strong Azure and Linux expertise, working across architecture, FinOps, security, reliability and automation for 50+ enterprise applications."
   active="about"
 >
   <PageHero
     eyebrow="About me"
-    title="Azure architect by day."
+    title="Hands-on Azure architect."
     accent="Lab tinkerer and photographer after hours."
   >
     <div class="intro">
       <p class="lead">
-        I'm Prashant Hegde, an infrastructure and DevOps architect with 13+
-        years in cloud and operations. I currently advise on 50+
-        applications running on Azure and Azure DevOps, with a focus on the
-        run side: keeping them cost-efficient, secure, optimised and
-        available.
+        I'm Prashant Hegde, a hands-on Azure cloud and platform architect with
+        13+ years in cloud and infrastructure. Azure and Linux are my core
+        strengths, and I currently support 50+ enterprise applications across
+        architecture, modernization, cost optimization, security, reliability
+        and automation.
       </p>
       <p class="lead">
-        My work is mostly about living systems — reviewing utilisation and
-        spend, closing vulnerabilities, strengthening availability and
-        standardising pipelines — rather than greenfield migrations. I enjoy
-        digging into complex environments and turning findings into practical
-        recommendations teams can act on.
+        My work is mostly about production environments: reviewing
+        utilization and spend, closing vulnerabilities, strengthening
+        availability and standardising pipelines. I enjoy digging into complex
+        environments and turning findings into practical recommendations
+        teams can act on.
       </p>
       <p class="lead">
         Away from work I tinker with a Kubernetes home lab and take photos
@@ -113,9 +113,29 @@ const exploringAreas = [
 
   <section class="section container">
     <SectionHeading
+      eyebrow="Beyond architecture"
+      title="Technical leadership and delivery"
+    />
+    <div class="card leadership reveal">
+      <p>
+        I combine hands-on architecture with team and delivery
+        responsibilities. I currently take team-lead responsibilities
+        alongside technical architecture work, and I have completed Delivery
+        Manager training.
+      </p>
+      <p>
+        I'm moving toward a mix of architecture, technical leadership and
+        delivery, while staying hands-on with the platforms I design and
+        support.
+      </p>
+    </div>
+  </section>
+
+  <section class="section container">
+    <SectionHeading
       eyebrow="Technical background"
       title="What I work with"
-      description="Day-to-day tools and disciplines, with Terraform at a working (not expert) level."
+      description="Azure and Linux are the core. Terraform is something I work with and manage rather than an area of deep expertise."
     />
     <div class="card-grid cols-3">
       {skillGroups.map((group, i) => (
@@ -129,10 +149,10 @@ const exploringAreas = [
     </div>
 
     <div class="exploring reveal">
-      <h3>Tinkering with in the lab</h3>
-      <p>Things I'm learning hands-on outside work — mostly for curiosity, sometimes to bring back to the job.</p>
+      <h3>Additional &amp; growing skills</h3>
+      <p>Areas I'm building up. I learned AWS fundamentals and hold the AWS SysOps Administrator Associate certification, but Azure remains my primary platform.</p>
       <div class="tags">
-        {exploringAreas.map((area) => <span class="tag outline">{area}</span>)}
+        {growingAreas.map((area) => <span class="tag outline">{area}</span>)}
       </div>
     </div>
   </section>
@@ -148,6 +168,10 @@ const exploringAreas = [
         </div>
       ))}
     </div>
+    <p class="aws-cert reveal">
+      Additional: <strong>AWS Certified SysOps Administrator – Associate</strong>.
+      AWS is a foundational, growing area for me; Azure remains my primary platform.
+    </p>
   </section>
 
   <section class="container">
@@ -156,9 +180,9 @@ const exploringAreas = [
       <h2>Still learning, still tinkering.</h2>
       <p>
         I like understanding how things run. At work that means keeping
-        Azure workloads healthy; at home it means breaking and rebuilding a
-        Kubernetes lab, deepening my Terraform and GitOps skills, and
-        photographing whatever catches my eye.
+        Azure and Linux workloads healthy; at home it means breaking and
+        rebuilding a Kubernetes lab, exploring AI agents and GitHub Copilot,
+        and photographing whatever catches my eye.
       </p>
       <a class="btn btn-primary" href="/contact/">Get in touch</a>
     </div>
@@ -179,7 +203,7 @@ const exploringAreas = [
 
   .stats {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-xl);
@@ -321,6 +345,17 @@ const exploringAreas = [
     font-size: 1.1rem;
   }
 
+  .aws-cert {
+    margin: 24px 0 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  .aws-cert strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
   /* Next */
   .next {
     margin-top: 72px;
@@ -343,19 +378,23 @@ const exploringAreas = [
     margin: 16px 0 26px;
   }
 
-  @media (max-width: 960px) {
-    .stats {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .stat:nth-child(3) {
-      border-left: 0;
-    }
-    .stat:nth-child(n + 3) {
-      border-top: 1px solid var(--border);
-    }
+  .leadership {
+    max-width: 760px;
+    gap: 12px;
+  }
+
+  .leadership p {
+    margin: 0;
   }
 
   @media (max-width: 680px) {
+    .stats {
+      grid-template-columns: 1fr;
+    }
+    .stat + .stat {
+      border-left: 0;
+      border-top: 1px solid var(--border);
+    }
     .timeline {
       padding-left: 28px;
     }

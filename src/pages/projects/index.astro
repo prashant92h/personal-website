@@ -7,21 +7,21 @@ import { professionalProjects, personalProjects } from "../../data/projects";
 
 <BaseLayout
   title="Projects | Prashant Hegde"
-  description="Azure infrastructure and DevOps architecture across 50+ applications — cost optimization, security, availability and pipelines — plus personal home-lab projects."
+  description="Azure and Linux architecture, cost optimization, security, reliability and automation across 50+ enterprise applications, plus personal home-lab projects."
   active="projects"
 >
   <PageHero
     eyebrow="Projects & experience"
-    title="Keeping 50+ apps running well"
+    title="Architecture that works beyond go-live"
     accent="and tinkering on the side."
-    lead="Professional work focused on the run side of Azure — cost, security, optimisation and availability — alongside personal projects in my home lab."
+    lead="Professional work across Azure and Linux, covering architecture, cost optimization, security, reliability and automation, alongside personal projects in my home lab."
   />
 
   <section class="section container">
     <SectionHeading
       eyebrow="Professional work"
-      title="Run-state architecture"
-      description="Advisory and hands-on work across 50+ applications on Azure and Azure DevOps."
+      title="Selected work and impact"
+      description="Hands-on architecture and operations across 50+ enterprise applications on Azure and Azure DevOps."
     />
     <div class="card-grid cols-2">
       {professionalProjects.map((project, i) => (
@@ -34,6 +34,13 @@ import { professionalProjects, personalProjects } from "../../data/projects";
           )}
           <h3>{project.title}</h3>
           <p>{project.description}</p>
+          {project.story && (
+            <dl class="story">
+              <div><dt>Challenge</dt><dd>{project.story.challenge}</dd></div>
+              <div><dt>Approach</dt><dd>{project.story.approach}</dd></div>
+              <div><dt>Impact</dt><dd>{project.story.impact}</dd></div>
+            </dl>
+          )}
           <div class="tags">
             {project.areas.map((area) => <span class="tag">{area}</span>)}
           </div>
@@ -86,6 +93,28 @@ import { professionalProjects, personalProjects } from "../../data/projects";
   .metric span {
     color: var(--subtle);
     font-size: 0.8rem;
+  }
+
+  .story {
+    display: grid;
+    gap: 10px;
+    margin: 16px 0 0;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  .story dt {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .story dd {
+    margin: 2px 0 0;
+    color: var(--muted);
+    font-size: 0.9rem;
   }
 
   .card-top {
