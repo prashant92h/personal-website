@@ -11,7 +11,7 @@ const experience = [
     period: "May 2021 – Present",
     current: true,
     description:
-      "Providing cloud architecture guidance and technical recommendations to application teams across infrastructure design, Azure services, security, automation and cost optimization. Contributing to architectural decisions and initiatives that improve scalability, operational efficiency and cloud governance.",
+      "Infrastructure and DevOps architect for 50+ applications on Azure and Azure DevOps. Advising application teams on keeping live environments cost-efficient, secure, optimised and highly available — including utilisation reviews, vulnerability remediation, pipeline standardisation and Terraform-based provisioning.",
   },
   {
     company: "Accenture",
@@ -36,45 +36,49 @@ const certifications = [
 ];
 
 const skillGroups = [
-  { title: "Cloud & Architecture", items: ["Microsoft Azure", "Azure PaaS", "Cloud Architecture", "Cost Optimization", "Cloud Security"] },
-  { title: "Automation & Delivery", items: ["Terraform", "Azure DevOps", "Packer", "CI/CD", "Infrastructure Automation"] },
-  { title: "Systems", items: ["Linux Administration"] },
+  { title: "Operate & optimise", items: ["Cost Optimization", "Right-sizing", "Cloud Security", "Vulnerability Management", "High Availability", "Backup & Recovery"] },
+  { title: "Azure & DevOps", items: ["Microsoft Azure", "Azure PaaS", "Azure DevOps", "CI/CD Pipelines", "Terraform (basics)", "Packer"] },
+  { title: "Systems", items: ["Linux Administration", "Patching", "Troubleshooting"] },
 ];
 
 const exploringAreas = [
   "Kubernetes",
-  "AWS",
+  "K3s",
   "GitOps",
-  "Platform Engineering",
-  "AI Infrastructure",
-  "Agentic Automation",
+  "Terraform (deeper)",
+  "AWS",
+  "AI-assisted Automation",
 ];
 ---
 
 <BaseLayout
   title="About | Prashant Hegde"
-  description="Learn about Prashant Hegde, a cloud professional with 13+ years of experience in cloud infrastructure, architecture, operations and automation."
+  description="Prashant Hegde is an Azure infrastructure and DevOps architect for 50+ applications, focused on cost, security, optimisation and availability. Home-lab tinkerer and amateur photographer."
   active="about"
 >
   <PageHero
     eyebrow="About me"
-    title="Cloud professional."
-    accent="Curious about what comes next."
+    title="Azure architect by day."
+    accent="Lab tinkerer and photographer after hours."
   >
     <div class="intro">
       <p class="lead">
-        I'm Prashant Hegde, a technology professional with 13+ years of
-        experience across cloud infrastructure, operations and automation.
-        My work focuses on helping teams make better infrastructure
-        decisions, improve operational efficiency and build reliable cloud
-        environments.
+        I'm Prashant Hegde, an infrastructure and DevOps architect with 13+
+        years in cloud and operations. I currently advise on 50+
+        applications running on Azure and Azure DevOps, with a focus on the
+        run side: keeping them cost-efficient, secure, optimised and
+        available.
       </p>
       <p class="lead">
-        Over the years I've worked across infrastructure operations, cloud
-        platforms, automation, security and cost optimization. I enjoy
-        understanding complex environments, identifying opportunities for
-        improvement and translating technical challenges into practical
-        recommendations.
+        My work is mostly about living systems — reviewing utilisation and
+        spend, closing vulnerabilities, strengthening availability and
+        standardising pipelines — rather than greenfield migrations. I enjoy
+        digging into complex environments and turning findings into practical
+        recommendations teams can act on.
+      </p>
+      <p class="lead">
+        Away from work I tinker with a Kubernetes home lab and take photos
+        as an amateur — landscapes, wildlife and travel.
       </p>
     </div>
   </PageHero>
@@ -110,8 +114,8 @@ const exploringAreas = [
   <section class="section container">
     <SectionHeading
       eyebrow="Technical background"
-      title="Areas of experience"
-      description="Technologies and disciplines from my professional work."
+      title="What I work with"
+      description="Day-to-day tools and disciplines, with Terraform at a working (not expert) level."
     />
     <div class="card-grid cols-3">
       {skillGroups.map((group, i) => (
@@ -125,8 +129,8 @@ const exploringAreas = [
     </div>
 
     <div class="exploring reveal">
-      <h3>Currently exploring</h3>
-      <p>Technologies and practices I'm developing through hands-on learning and personal projects.</p>
+      <h3>Tinkering with in the lab</h3>
+      <p>Things I'm learning hands-on outside work — mostly for curiosity, sometimes to bring back to the job.</p>
       <div class="tags">
         {exploringAreas.map((area) => <span class="tag outline">{area}</span>)}
       </div>
@@ -148,13 +152,13 @@ const exploringAreas = [
 
   <section class="container">
     <div class="next reveal">
-      <p class="eyebrow">What's next</p>
-      <h2>Continuously learning and exploring.</h2>
+      <p class="eyebrow">Beyond the day job</p>
+      <h2>Still learning, still tinkering.</h2>
       <p>
-        I'm expanding my focus beyond traditional cloud operations towards
-        cloud architecture, platform engineering and AI infrastructure —
-        exploring Kubernetes, AWS, GitOps and AI-assisted automation, and
-        applying them to practical infrastructure and operations challenges.
+        I like understanding how things run. At work that means keeping
+        Azure workloads healthy; at home it means breaking and rebuilding a
+        Kubernetes lab, deepening my Terraform and GitOps skills, and
+        photographing whatever catches my eye.
       </p>
       <a class="btn btn-primary" href="/contact/">Get in touch</a>
     </div>

@@ -7,21 +7,21 @@ import { professionalProjects, personalProjects } from "../../data/projects";
 
 <BaseLayout
   title="Projects | Prashant Hegde"
-  description="Professional experience and personal projects in cloud infrastructure, automation, Kubernetes and platform engineering."
+  description="Azure infrastructure and DevOps architecture across 50+ applications — cost optimization, security, availability and pipelines — plus personal home-lab projects."
   active="projects"
 >
   <PageHero
     eyebrow="Projects & experience"
-    title="Things I've worked on"
-    accent="and things I'm building."
-    lead="A collection of professional work, personal projects and technical explorations across cloud infrastructure and platform engineering."
+    title="Keeping 50+ apps running well"
+    accent="and tinkering on the side."
+    lead="Professional work focused on the run side of Azure — cost, security, optimisation and availability — alongside personal projects in my home lab."
   />
 
   <section class="section container">
     <SectionHeading
-      eyebrow="Professional experience"
-      title="Applied in practice"
-      description="Areas of work from my professional experience."
+      eyebrow="Professional work"
+      title="Run-state architecture"
+      description="Advisory and hands-on work across 50+ applications on Azure and Azure DevOps."
     />
     <div class="card-grid cols-2">
       {professionalProjects.map((project, i) => (
@@ -45,8 +45,8 @@ import { professionalProjects, personalProjects } from "../../data/projects";
   <section class="section container">
     <SectionHeading
       eyebrow="Personal projects"
-      title="Building and learning"
-      description="Hands-on experiments and projects outside my day-to-day work."
+      title="Tinkering and learning"
+      description="Hobby experiments outside my day job — where I try new tools and break things safely."
     />
     <div class="card-grid cols-2">
       {personalProjects.map((project, i) => (

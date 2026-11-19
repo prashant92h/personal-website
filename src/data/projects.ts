@@ -10,29 +10,42 @@ export interface Project {
 
 export const professionalProjects: Project[] = [
   {
-    title: "Cloud Cost Optimization",
+    title: "Run-state Architecture Advisory",
     description:
-      "Identified optimization opportunities and recommended architectural improvements across a large application estate.",
-    areas: ["Cost Optimization", "Resource Efficiency", "Architecture"],
-    metric: { value: "$500K+", label: "cumulative savings · 3 years · 100+ applications" },
+      "Architect and advisor for 50+ production applications on Azure — reviewing infrastructure and DevOps design so workloads stay efficient, secure and available long after go-live.",
+    areas: ["Azure", "Azure DevOps", "Linux", "Architecture Reviews"],
+    metric: { value: "50+", label: "applications · infrastructure & DevOps" },
   },
   {
-    title: "Cloud Architecture & Application Advisory",
+    title: "Cost Optimization",
     description:
-      "Advised application teams on Azure architecture, service selection and design improvements for scalable, efficient workloads.",
-    areas: ["Azure", "Cloud Architecture", "Application Advisory"],
+      "Ongoing utilisation reviews, right-sizing and service-tier recommendations that reduce the cost of running applications without compromising performance.",
+    areas: ["Cost Optimization", "Right-sizing", "Azure Cost Management"],
+    metric: { value: "$500K+", label: "cumulative savings · 3 years" },
   },
   {
-    title: "Infrastructure Architecture & Automation",
+    title: "Security & Vulnerability Management",
     description:
-      "Designed standardized infrastructure build approaches with Azure DevOps and Terraform for consistent, repeatable, automated provisioning.",
-    areas: ["Azure DevOps", "Terraform", "Infrastructure as Code", "CI/CD"],
+      "Architectural guidance on keeping live infrastructure secure — vulnerability remediation, hardening, patching and alignment with security best practices.",
+    areas: ["Cloud Security", "Vulnerability Management", "Hardening"],
   },
   {
-    title: "Cloud Security & Governance",
+    title: "Availability & Resilience",
     description:
-      "Provided architectural guidance on cloud security, vulnerability remediation, infrastructure hardening and best practices.",
-    areas: ["Cloud Security", "Vulnerability Management", "Governance"],
+      "Reviewing redundancy, backup and recovery design so applications stay available through failures and planned maintenance.",
+    areas: ["High Availability", "Backup & Recovery", "Resilience"],
+  },
+  {
+    title: "Azure DevOps Pipelines & Standardisation",
+    description:
+      "Standardised, repeatable build and deployment pipelines in Azure DevOps, with Terraform used for consistent infrastructure provisioning.",
+    areas: ["Azure DevOps", "CI/CD", "Terraform (basics)", "Standardisation"],
+  },
+  {
+    title: "Linux Operations",
+    description:
+      "Supporting Linux-based workloads: patching, hardening, troubleshooting and keeping servers healthy in production.",
+    areas: ["Linux", "Patching", "Troubleshooting"],
   },
 ];
 
@@ -40,36 +53,36 @@ export const personalProjects: Project[] = [
   {
     title: "Kubernetes Home Lab",
     description:
-      "A persistent, lightweight K3s environment for self-hosted services and hands-on platform engineering.",
+      "My playground: a persistent, lightweight K3s environment for self-hosted services and hands-on experiments.",
     areas: ["K3s", "Linux", "Kubernetes", "Self-hosting"],
     status: "In progress",
   },
   {
-    title: "GitOps & Infrastructure as Code",
+    title: "Terraform & GitOps Practice",
     description:
-      "Git-driven infrastructure management, automated deployments and reproducible environments.",
-    areas: ["Git", "GitOps", "CI/CD", "Automation"],
+      "Going beyond Terraform basics — Git-driven infrastructure, automated deployments and reproducible environments in the lab.",
+    areas: ["Terraform", "Git", "GitOps", "CI/CD"],
     status: "Exploring",
   },
   {
-    title: "AI-driven Automation",
+    title: "AI-assisted Automation",
     description:
-      "AI-assisted and agentic automation to streamline cloud operations, DevOps workflows and repetitive infrastructure tasks.",
+      "Trying AI-assisted and agentic tooling to cut repetitive operations work and speed up infrastructure troubleshooting.",
     areas: ["AI", "GitHub Copilot", "Agentic Automation", "DevOps"],
     status: "Exploring",
   },
   {
     title: "Personal Website",
     description:
-      "This site — a platform to document projects, share technical learnings and showcase photography.",
+      "This site — a place to document what I run at work, what I break in the lab and what I photograph along the way.",
     areas: ["Astro", "GitHub", "Cloudflare Pages"],
     status: "In progress",
   },
 ];
 
 export const stats = [
+  { value: "50+", label: "Applications advised on infrastructure & DevOps" },
+  { value: "$500K+", label: "Cumulative cloud cost savings" },
   { value: "13+", label: "Years in cloud & infrastructure" },
-  { value: "$500K+", label: "Cumulative cloud savings" },
-  { value: "100+", label: "Applications advised" },
   { value: "3", label: "Microsoft Azure certifications" },
 ];

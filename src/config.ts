@@ -1,9 +1,9 @@
 export const SITE = {
   name: "Prashant Hegde",
   url: "https://prashanthegde.in",
-  tagline: "Cloud & Platform Engineering",
+  tagline: "Azure Infrastructure & DevOps Architect",
   description:
-    "Prashant Hegde — 13+ years of experience in cloud infrastructure, automation and platform engineering.",
+    "Prashant Hegde — Azure infrastructure and DevOps architect advising 50+ applications on cost, security, availability and optimisation. Home-lab tinkerer and amateur photographer.",
   jobTitle: "Senior Advisory Consultant",
   employer: { name: "IBM", url: "https://www.ibm.com" },
   ogImage: "/og-image.png",
@@ -15,11 +15,12 @@ export const SITE = {
   knowsAbout: [
     "Microsoft Azure",
     "Cloud Architecture",
-    "Cloud Infrastructure",
-    "Infrastructure Automation",
+    "Cloud Cost Optimization",
+    "Cloud Security",
+    "High Availability",
     "Azure DevOps",
-    "DevOps",
-    "Platform Engineering",
+    "Terraform",
+    "Linux",
   ],
 } as const;
 

@@ -3,9 +3,9 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import { SITE } from "../config";
-import { professionalProjects, personalProjects, stats } from "../data/projects";
+import { professionalProjects, stats } from "../data/projects";
 
-const featured = [professionalProjects[0], professionalProjects[2], personalProjects[0]];
+const featured = professionalProjects.slice(0, 3);
 
 const posts = (await getCollection("blog"))
   .filter(({ data }) => import.meta.env.DEV || !data.draft)
@@ -17,24 +17,24 @@ const formatDate = (date: Date) =>
 
 const expertise = [
   {
-    title: "Cloud Architecture",
-    text: "Azure design, service selection, scalability and cost-aware decisions.",
-    icon: "M3 17a4 4 0 0 1 1-7.9 5.5 5.5 0 0 1 10.7-1A4.5 4.5 0 1 1 17 17z",
+    title: "Cost optimization",
+    text: "Utilisation reviews, right-sizing and service-tier choices that cut the cost of running applications.",
+    icon: "M3 3v18h18M7 14l4-4 3 3 5-6",
   },
   {
-    title: "Automation & IaC",
-    text: "Terraform, Packer and Azure DevOps pipelines for repeatable delivery.",
-    icon: "M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16",
-  },
-  {
-    title: "Platform Engineering",
-    text: "Kubernetes, GitOps and self-service foundations for engineering teams.",
-    icon: "M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5M3 17l9 5 9-5",
-  },
-  {
-    title: "Security & Governance",
-    text: "Hardening, vulnerability remediation and policy guardrails in the cloud.",
+    title: "Security",
+    text: "Vulnerability remediation, hardening and patching for infrastructure that is already live.",
     icon: "M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z",
+  },
+  {
+    title: "Availability",
+    text: "Redundancy, backup and recovery reviews so applications stay up through failures and maintenance.",
+    icon: "M3 12h4l3-8 4 16 3-8h4",
+  },
+  {
+    title: "DevOps & automation",
+    text: "Standardised Azure DevOps pipelines and Terraform-based provisioning for repeatable operations.",
+    icon: "M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16",
   },
 ];
 ---
@@ -44,15 +44,16 @@ const expertise = [
     <div class="aurora" aria-hidden="true"></div>
     <div class="container hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">Cloud · Automation · Platform Engineering</p>
+        <p class="eyebrow">Azure · DevOps · Cost · Security · Availability</p>
         <h1>
           Hi, I'm Prashant.
-          <span class="grad-text">I build reliable cloud platforms.</span>
+          <span class="grad-text">I keep Azure workloads efficient, secure and available.</span>
         </h1>
         <p class="lead">
-          13+ years across cloud infrastructure, operations and automation —
-          now exploring cloud architecture, platform engineering and AI
-          infrastructure, one home-lab experiment at a time.
+          Infrastructure and DevOps architect for 50+ applications on Azure
+          and Azure DevOps, focused on running them well — cost, security,
+          optimisation and availability. Outside work I tinker with a
+          Kubernetes home lab and chase light with a camera.
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="/projects/">View my work</a>
@@ -69,10 +70,10 @@ const expertise = [
 <span class="c-acc">prashant-hegde</span>
 
 <span class="c-muted">$</span> cat focus.txt
-<span class="c-acc">▸</span> Azure &amp; cloud architecture
-<span class="c-acc">▸</span> Terraform · Azure DevOps · CI/CD
-<span class="c-acc">▸</span> Kubernetes · GitOps · K3s lab
-<span class="c-acc">▸</span> AI-driven automation
+<span class="c-acc">▸</span> 50+ apps · Azure infra &amp; DevOps
+<span class="c-acc">▸</span> Cost · Security · Availability
+<span class="c-acc">▸</span> Azure DevOps · Linux · Terraform
+<span class="c-acc">▸</span> Home lab tinkerer · photographer
 
 <span class="c-muted">$</span> <span class="caret"></span></pre>
       </div>
@@ -91,8 +92,8 @@ const expertise = [
   <section class="section container">
     <SectionHeading
       eyebrow="What I do"
-      title="Where I add value"
-      description="Practical guidance and hands-on engineering across the cloud lifecycle."
+      title="Keeping live workloads healthy"
+      description="Architecture guidance for applications that are already running — so they cost less, stay secure and stay up."
     />
     <div class="card-grid cols-4">
       {expertise.map((item, i) => (
@@ -110,7 +111,7 @@ const expertise = [
   </section>
 
   <section class="section container">
-    <SectionHeading eyebrow="Selected work" title="Projects & explorations">
+    <SectionHeading eyebrow="Professional work" title="Selected focus areas">
       <a class="text-link" href="/projects/">View all <span aria-hidden="true">→</span></a>
     </SectionHeading>
     <div class="card-grid cols-3">
@@ -138,11 +139,11 @@ const expertise = [
     <a class="lab-banner reveal" href="/lab/">
       <div>
         <p class="eyebrow">The lab</p>
-        <h2>A Kubernetes home lab, built in the open.</h2>
+        <h2>Where I tinker: a Kubernetes home lab.</h2>
         <p>
-          A persistent K3s platform for self-hosted services, GitOps and
-          platform engineering experiments — architecture, decisions and
-          lessons learned.
+          A hobby K3s cluster for self-hosted services and experiments —
+          the place I try things I don't get to touch at work, and write down
+          what breaks.
         </p>
         <span class="text-link">Explore the lab <span aria-hidden="true">→</span></span>
       </div>
@@ -163,7 +164,7 @@ const expertise = [
   </section>
 
   <section class="section container">
-    <SectionHeading eyebrow="Writing" title="Notes, ideas and learnings">
+    <SectionHeading eyebrow="Writing" title="Notes from the field and the lab">
       <a class="text-link" href="/blog/">All articles <span aria-hidden="true">→</span></a>
     </SectionHeading>
     {posts.length > 0 ? (
@@ -181,8 +182,9 @@ const expertise = [
       <div class="card empty reveal">
         <h3>The first articles are on their way.</h3>
         <p>
-          I'm writing up my K3s home lab, Azure lessons and automation
-          experiments. Follow along via <a class="text-link" href="/rss.xml">RSS</a>.
+          I'm writing up Azure cost and security lessons, DevOps pipeline
+          notes and my home-lab experiments. Follow along via
+          <a class="text-link" href="/rss.xml">RSS</a>.
         </p>
       </div>
     )}
@@ -190,8 +192,8 @@ const expertise = [
 
   <section class="container">
     <div class="cta-panel reveal">
-      <h2>Have something interesting in mind?</h2>
-      <p>I'm always open to meaningful conversations and collaborations.</p>
+      <h2>Want to compare notes?</h2>
+      <p>Happy to talk Azure operations, DevOps, home labs or photography.</p>
       <div class="hero-actions center">
         <a class="btn btn-primary" href="/contact/">Let's connect</a>
         <a class="btn btn-ghost" href="/photography/">See my photography</a>

@@ -5,10 +5,10 @@ import SectionHeading from "../../components/SectionHeading.astro";
 import { SITE } from "../../config";
 
 const principles = [
-  { title: "Data preservation", text: "Persistent storage and backups come first — the lab should survive rebuilds." },
-  { title: "Resource efficiency", text: "A lightweight distribution that runs well on modest hardware." },
+  { title: "Availability & backups", text: "Persistent storage and tested restores — the same instinct I apply to production." },
+  { title: "Cost awareness", text: "A lightweight distribution on modest hardware; no waste, even in a hobby lab." },
   { title: "Recoverability", text: "Everything reproducible from Git so a node can be rebuilt, not repaired." },
-  { title: "Maintainability", text: "Simple, documented choices that stay useful beyond the learning phase." },
+  { title: "Security basics", text: "Hardened nodes, private access and sensible defaults from day one." },
 ];
 
 const stack = [
@@ -30,14 +30,14 @@ const roadmap = [
 
 <BaseLayout
   title="Lab | Prashant Hegde"
-  description="A permanent K3s Kubernetes home lab for self-hosted services, GitOps and platform engineering experiments."
+  description="My hobby K3s Kubernetes home lab — a place to tinker with self-hosted services, Terraform and GitOps outside the day job."
   active="lab"
 >
   <PageHero
     eyebrow="The lab"
-    title="A home lab built for"
-    accent="learning in the open."
-    lead="A persistent, lightweight Kubernetes platform where I practise platform engineering with real, long-running workloads — and document what works and what doesn't."
+    title="A hobby home lab for"
+    accent="tinkering and learning."
+    lead="A persistent, lightweight Kubernetes cluster where I experiment with self-hosting, Terraform and GitOps — and write down what works and what breaks."
   >
     <div class="actions">
       <a class="btn btn-primary" href="/blog/">Read the build log</a>
@@ -48,8 +48,8 @@ const roadmap = [
   <section class="section container">
     <SectionHeading
       eyebrow="Architecture"
-      title="The platform at a glance"
-      description="Target architecture for the lab. Components move from planned to live as they're built."
+      title="The lab at a glance"
+      description="Target design for the lab. Components move from planned to live as I build and tinker."
     />
     <div class="diagram card reveal">
       <svg viewBox="0 0 760 300" role="img" aria-label="Lab architecture: Git repository drives a K3s node that runs workloads, storage and networking">
@@ -103,7 +103,7 @@ const roadmap = [
   <section class="section container">
     <SectionHeading
       eyebrow="Design principles"
-      title="What the lab optimises for"
+      title="Habits borrowed from work"
     />
     <div class="card-grid cols-4">
       {principles.map((p, i) => (

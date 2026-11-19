@@ -1,6 +1,6 @@
 ---
 title: "Building a Permanent K3s Home Lab"
-description: "My approach to building a lightweight, persistent Kubernetes home lab for self-hosted services and platform engineering experiments."
+description: "How I'm building a lightweight, persistent K3s home lab to tinker with self-hosted services — and why I treat a hobby cluster with production habits."
 pubDate: 2026-11-16
 category: "Kubernetes"
 tags:
@@ -12,9 +12,9 @@ featured: true
 draft: true
 ---
 
-A home lab is more than a place to experiment with technology. It can become a practical environment for learning, building and operating real infrastructure.
+My day job is keeping Azure workloads cost-efficient, secure and available. The home lab is where I get to tinker with the things I don't touch at work — Kubernetes, self-hosting, deeper Terraform and GitOps.
 
-My goal is to build a lightweight Kubernetes platform that can host persistent services while providing a foundation for exploring platform engineering.
+My goal is a lightweight K3s cluster that hosts persistent services, built with the same habits I apply at work: backups, cost awareness and security basics.
 
 ## Why K3s?
 
