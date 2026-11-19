@@ -1,19 +1,22 @@
-
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import { SITE } from "../../config";
 
 const contactLinks = [
   {
     title: "LinkedIn",
     description: "Connect with me professionally and follow my work.",
     label: "Visit LinkedIn",
-    href: "https://www.linkedin.com/in/hegde-prashant",
+    href: SITE.social.linkedin,
+    icon: "M4 4h4v16H4zM10 9h4v2c.6-1.2 2-2.2 4-2.2 3 0 4 2 4 5V20h-4v-5.5c0-1.6-.6-2.5-2-2.5s-2 1-2 2.5V20h-4zM6 1.5a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4",
   },
   {
     title: "GitHub",
     description: "Explore my projects, code and technical experiments.",
     label: "View GitHub",
-    href: "https://github.com/prashant92h",
+    href: SITE.social.github,
+    icon: "M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21",
   },
 ];
 ---
@@ -23,29 +26,25 @@ const contactLinks = [
   description="Get in touch with Prashant Hegde for professional conversations, technical collaboration and interesting opportunities."
   active="contact"
 >
-  <section class="contact-intro container">
-    <p class="eyebrow">GET IN TOUCH</p>
-    <h1>Let's start a<br /><span>conversation.</span></h1>
-    <p>
-      Interested in cloud architecture, platform engineering, technology
-      or a potential collaboration? I'd be happy to connect.
-    </p>
-  </section>
+  <PageHero
+    eyebrow="Get in touch"
+    title="Let's start a"
+    accent="conversation."
+    lead="Interested in cloud architecture, platform engineering, technology or a potential collaboration? I'd be happy to connect."
+  />
 
-  <section class="contact-section container">
-    <div class="contact-grid">
-      {contactLinks.map((link) => (
-        <a
-          class="contact-card"
-          href={link.href}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <div>
-            <h2>{link.title}</h2>
-            <p>{link.description}</p>
-          </div>
-          <span>{link.label} <span aria-hidden="true">↗</span></span>
+  <section class="container contact">
+    <div class="card-grid cols-2 grid-narrow">
+      {contactLinks.map((link, i) => (
+        <a class="card reveal" href={link.href} target="_blank" rel="noopener noreferrer" style={`--d:${i}`}>
+          <span class="icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d={link.icon}></path>
+            </svg>
+          </span>
+          <h2>{link.title}</h2>
+          <p>{link.description}</p>
+          <span class="text-link go">{link.label} <span aria-hidden="true">↗</span></span>
         </a>
       ))}
     </div>
@@ -53,99 +52,27 @@ const contactLinks = [
 </BaseLayout>
 
 <style>
-  .contact-intro {
-    padding-top: 112px;
-    padding-bottom: 72px;
-    max-width: 1120px;
+  .grid-narrow {
+    max-width: 880px;
   }
 
-  .eyebrow {
-    color: var(--color-accent);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    margin-bottom: 18px;
-  }
-
-  h1,
-  h2 {
-    font-family: var(--font-heading);
-    color: var(--color-text);
-  }
-
-  h1 {
-    font-size: clamp(2.8rem, 6vw, 4.5rem);
-    line-height: 1.12;
-    letter-spacing: -0.05em;
-  }
-
-  h1 span {
-    color: var(--color-muted);
-    font-weight: 500;
-  }
-
-  .contact-intro > p:last-child {
-    color: var(--color-muted);
-    font-size: 1.05rem;
-    line-height: 1.8;
-    max-width: 620px;
-    margin-top: 24px;
-  }
-
-  .contact-section {
-    padding-bottom: 120px;
-  }
-
-  .contact-grid {
+  .icon {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-    max-width: 850px;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    background: var(--accent-soft);
+    color: var(--accent);
   }
 
-  .contact-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 190px;
-    padding: 28px;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    transition: var(--transition);
+  h2 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
   }
 
-  .contact-card:hover {
-    border-color: var(--color-accent);
-    transform: translateY(-3px);
-  }
-
-  .contact-card h2 {
-    font-size: 1.3rem;
-  }
-
-  .contact-card p {
-    color: var(--color-muted);
-    line-height: 1.7;
-    margin-top: 10px;
-  }
-
-  .contact-card > span {
-    color: var(--color-accent);
-    font-size: 0.9rem;
-    font-weight: 600;
+  .go {
     margin-top: 28px;
   }
-
-  @media (max-width: 700px) {
-    .contact-intro {
-      padding-top: 76px;
-      padding-bottom: 52px;
-    }
-
-    .contact-grid {
-      grid-template-columns: 1fr;
-    }
-  }
 </style>
-

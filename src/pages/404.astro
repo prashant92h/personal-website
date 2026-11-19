@@ -1,38 +1,54 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
-  title="Page Not Found"
+  title="Page not found | Prashant Hegde"
   description="The page you're looking for could not be found."
+  noindex
 >
-  <section class="error-page">
-    <p class="error-code">404</p>
+  <section class="error container">
+    <div class="aurora" aria-hidden="true"></div>
+    <p class="code grad-text">404</p>
     <h1>Page not found</h1>
-    <p>The page may have been moved, deleted, or never existed.</p>
-    <a href="/">Back to homepage</a>
+    <p class="lead">The page may have been moved, deleted, or never existed.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="/">Back to homepage</a>
+      <a class="btn btn-ghost" href="/blog/">Read the blog</a>
+    </div>
   </section>
 </BaseLayout>
 
 <style>
-  .error-page {
+  .error {
+    position: relative;
     max-width: 680px;
-    margin: 100px auto;
+    padding-block: 120px;
     text-align: center;
   }
 
-  .error-code {
-    color: #52765d;
-    font-size: 1rem;
-    font-weight: 700;
+  .code {
+    font-family: var(--font-heading);
+    font-size: clamp(5rem, 16vw, 9rem);
+    font-weight: 800;
+    letter-spacing: -0.06em;
+    line-height: 1;
+    margin: 0 0 12px;
   }
 
   h1 {
-    margin: 12px 0;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
   }
 
-  .error-page a {
-    display: inline-block;
-    margin-top: 24px;
+  .lead {
+    margin: 16px 0 0;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 32px;
   }
 </style>

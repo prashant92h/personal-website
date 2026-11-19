@@ -1,0 +1,255 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import { SITE } from "../../config";
+
+const principles = [
+  { title: "Data preservation", text: "Persistent storage and backups come first — the lab should survive rebuilds." },
+  { title: "Resource efficiency", text: "A lightweight distribution that runs well on modest hardware." },
+  { title: "Recoverability", text: "Everything reproducible from Git so a node can be rebuilt, not repaired." },
+  { title: "Maintainability", text: "Simple, documented choices that stay useful beyond the learning phase." },
+];
+
+const stack = [
+  { layer: "Orchestration", detail: "K3s — lightweight, single-node Kubernetes", status: "In progress" },
+  { layer: "Workloads", detail: "Containerised self-hosted services", status: "In progress" },
+  { layer: "Storage", detail: "Persistent volumes for application data", status: "Planned" },
+  { layer: "Networking", detail: "Private service access and ingress", status: "Planned" },
+  { layer: "Delivery", detail: "GitOps-driven, declarative deployments", status: "Planned" },
+  { layer: "Observability", detail: "Monitoring and alerting foundation", status: "Planned" },
+];
+
+const roadmap = [
+  { phase: "01", title: "Foundation", text: "Single-node K3s cluster, base OS hardening and first workloads." },
+  { phase: "02", title: "Persistence", text: "Storage classes, backups and a tested restore procedure." },
+  { phase: "03", title: "GitOps", text: "Declarative cluster state in Git with automated reconciliation." },
+  { phase: "04", title: "Observability", text: "Metrics, logs and alerts to operate the lab like production." },
+];
+---
+
+<BaseLayout
+  title="Lab | Prashant Hegde"
+  description="A permanent K3s Kubernetes home lab for self-hosted services, GitOps and platform engineering experiments."
+  active="lab"
+>
+  <PageHero
+    eyebrow="The lab"
+    title="A home lab built for"
+    accent="learning in the open."
+    lead="A persistent, lightweight Kubernetes platform where I practise platform engineering with real, long-running workloads — and document what works and what doesn't."
+  >
+    <div class="actions">
+      <a class="btn btn-primary" href="/blog/">Read the build log</a>
+      <a class="btn btn-ghost" href={SITE.social.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    </div>
+  </PageHero>
+
+  <section class="section container">
+    <SectionHeading
+      eyebrow="Architecture"
+      title="The platform at a glance"
+      description="Target architecture for the lab. Components move from planned to live as they're built."
+    />
+    <div class="diagram card reveal">
+      <svg viewBox="0 0 760 300" role="img" aria-label="Lab architecture: Git repository drives a K3s node that runs workloads, storage and networking">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0L10 5L0 10z" fill="currentColor"></path>
+          </marker>
+        </defs>
+        <g fill="none" stroke="currentColor" stroke-width="1.6" class="lines">
+          <rect x="20" y="110" width="150" height="80" rx="12" class="box"></rect>
+          <rect x="250" y="30" width="490" height="240" rx="16" class="box dashed"></rect>
+          <rect x="280" y="70" width="140" height="64" rx="10" class="box"></rect>
+          <rect x="440" y="70" width="140" height="64" rx="10" class="box"></rect>
+          <rect x="600" y="70" width="110" height="64" rx="10" class="box"></rect>
+          <rect x="280" y="170" width="200" height="64" rx="10" class="box"></rect>
+          <rect x="500" y="170" width="210" height="64" rx="10" class="box"></rect>
+          <path d="M170 150h80" marker-end="url(#arrow)"></path>
+        </g>
+        <g class="labels" text-anchor="middle">
+          <text x="95" y="146" class="t1">Git repository</text>
+          <text x="95" y="166" class="t2">source of truth</text>
+          <text x="495" y="52" class="t2">K3s node</text>
+          <text x="350" y="98" class="t1">Workloads</text>
+          <text x="350" y="118" class="t2">self-hosted apps</text>
+          <text x="510" y="98" class="t1">Ingress</text>
+          <text x="510" y="118" class="t2">private access</text>
+          <text x="655" y="98" class="t1">DNS</text>
+          <text x="655" y="118" class="t2">&amp; TLS</text>
+          <text x="380" y="198" class="t1">Persistent storage</text>
+          <text x="380" y="218" class="t2">data &amp; backups</text>
+          <text x="605" y="198" class="t1">Observability</text>
+          <text x="605" y="218" class="t2">metrics · logs · alerts</text>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <section class="section container">
+    <SectionHeading eyebrow="Stack" title="Layer by layer" />
+    <div class="stack card reveal">
+      {stack.map((row) => (
+        <div class="stack-row">
+          <strong>{row.layer}</strong>
+          <span>{row.detail}</span>
+          <span class:list={["pill", { "pill-live": row.status === "In progress" }]}>{row.status}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section container">
+    <SectionHeading
+      eyebrow="Design principles"
+      title="What the lab optimises for"
+    />
+    <div class="card-grid cols-4">
+      {principles.map((p, i) => (
+        <div class="card reveal" style={`--d:${i}`}>
+          <h3>{p.title}</h3>
+          <p>{p.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section container">
+    <SectionHeading eyebrow="Roadmap" title="Where it's heading" />
+    <ol class="roadmap">
+      {roadmap.map((step, i) => (
+        <li class="card is-interactive reveal" style={`--d:${i}`}>
+          <span class="phase">{step.phase}</span>
+          <h3>{step.title}</h3>
+          <p>{step.text}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+</BaseLayout>
+
+<style>
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 32px;
+  }
+
+  .diagram {
+    padding: 28px;
+    color: var(--accent);
+  }
+
+  .diagram svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .box {
+    fill: var(--surface-2);
+    stroke: var(--border-strong);
+  }
+
+  .box.dashed {
+    fill: none;
+    stroke: var(--accent);
+    stroke-dasharray: 6 6;
+  }
+
+  .lines path {
+    stroke: var(--accent);
+  }
+
+  .labels text {
+    font-family: var(--font-body);
+  }
+
+  .t1 {
+    fill: var(--text);
+    font-size: 14px;
+    font-weight: 650;
+  }
+
+  .t2 {
+    fill: var(--subtle);
+    font-size: 11.5px;
+    font-family: var(--font-mono);
+  }
+
+  .stack {
+    padding: 8px 28px;
+  }
+
+  .stack-row {
+    display: grid;
+    grid-template-columns: 180px 1fr auto;
+    align-items: center;
+    gap: 20px;
+    padding: 18px 0;
+  }
+
+  .stack-row + .stack-row {
+    border-top: 1px solid var(--border);
+  }
+
+  .stack-row strong {
+    font-family: var(--font-heading);
+  }
+
+  .stack-row span:not(.pill) {
+    color: var(--muted);
+  }
+
+  .roadmap {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .phase {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  @media (max-width: 960px) {
+    .roadmap {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 680px) {
+    .diagram {
+      padding: 14px;
+      overflow-x: auto;
+    }
+
+    .diagram svg {
+      min-width: 560px;
+    }
+
+    .stack {
+      padding: 4px 20px;
+    }
+
+    .stack-row {
+      grid-template-columns: 1fr auto;
+      gap: 6px 12px;
+    }
+
+    .stack-row span:not(.pill) {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+
+    .roadmap {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

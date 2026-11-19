@@ -1,52 +1,134 @@
+---
+import { NAV, SITE } from "../config";
+---
 
 <footer class="site-footer">
-  <div class="container footer-inner">
-    <span>© {new Date().getFullYear()} Prashant Hegde</span>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/">
+          <img src="/favicon.svg" alt="" width="32" height="32" />
+          <span>{SITE.name}</span>
+        </a>
+        <p>
+          Cloud &amp; platform engineer. Building on Azure, tinkering with
+          Kubernetes, photographing the world in between.
+        </p>
+      </div>
 
-    <div class="footer-links">
-      <a href="https://github.com/prashant92h" target="_blank" rel="noreferrer">
-        GitHub ↗
-      </a>
-      <a href="https://www.linkedin.com/in/hegde-prashant" target="_blank" rel="noreferrer">
-        LinkedIn ↗
-      </a>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          {NAV.map((item) => (
+            <li><a href={item.href}>{item.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h4>Connect</h4>
+        <ul>
+          <li><a href={SITE.social.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
+          <li><a href={SITE.social.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
+          <li><a href="/rss.xml">RSS feed</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© {new Date().getFullYear()} {SITE.name}. All rights reserved.</span>
+      <span>
+        Built with <a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a>
+        · Hosted on Cloudflare Pages
+      </span>
     </div>
   </div>
 </footer>
 
 <style>
   .site-footer {
-    margin-top: 64px;
-    border-top: 1px solid var(--color-border);
+    margin-top: 72px;
+    padding-top: 56px;
+    border-top: 1px solid var(--border);
+    background: linear-gradient(to bottom, transparent, var(--bg-soft));
   }
 
-  .footer-inner {
-    min-height: 76px;
-    display: flex;
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 44px;
+  }
+
+  .brand {
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    color: var(--color-muted);
-    font-size: 12px;
+    gap: 10px;
+    font-family: var(--font-heading);
+    font-weight: 750;
+    font-size: 1.05rem;
+    letter-spacing: -0.02em;
   }
 
-  .footer-links {
+  .brand img {
+    border-radius: 8px;
+  }
+
+  .footer-brand p {
+    color: var(--muted);
+    max-width: 380px;
+    margin: 16px 0 0;
+    font-size: 0.94rem;
+  }
+
+  h4 {
+    margin-bottom: 14px;
+    color: var(--subtle);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+  }
+
+  ul a {
+    color: var(--muted);
+    font-size: 0.94rem;
+    transition: color var(--transition);
+  }
+
+  ul a:hover,
+  .footer-bottom a:hover {
+    color: var(--accent);
+  }
+
+  .footer-bottom {
     display: flex;
-    gap: 22px;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding-block: 22px;
+    border-top: 1px solid var(--border);
+    color: var(--subtle);
+    font-size: 0.82rem;
   }
 
-  .footer-links a:hover {
-    color: var(--color-accent);
-  }
+  @media (max-width: 760px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
 
-  @media (max-width: 480px) {
-    .footer-inner {
-      align-items: flex-start;
-      flex-direction: column;
-      justify-content: center;
-      padding-block: 18px;
-      gap: 10px;
+    .footer-brand {
+      grid-column: 1 / -1;
     }
   }
 </style>
-

@@ -1,14 +1,17 @@
-
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import { stats } from "../../data/projects";
 
 const experience = [
   {
     company: "IBM",
     role: "Senior Advisory Consultant",
     period: "May 2021 – Present",
-description:
-  "Providing cloud architecture guidance and technical recommendations to application teams across infrastructure design, Azure services, security, automation and cost optimization. Contributing to architectural decisions and initiatives that improve scalability, operational efficiency and cloud governance.",  
+    current: true,
+    description:
+      "Providing cloud architecture guidance and technical recommendations to application teams across infrastructure design, Azure services, security, automation and cost optimization. Contributing to architectural decisions and initiatives that improve scalability, operational efficiency and cloud governance.",
   },
   {
     company: "Accenture",
@@ -27,23 +30,15 @@ description:
 ];
 
 const certifications = [
-  "Microsoft Certified: Azure Administrator Associate (AZ-104)",
-  "Microsoft Certified: Azure Solutions Architect Expert (AZ-305)",
-  "Microsoft Certified: DevOps Engineer Expert (AZ-400)",
+  { name: "Azure Administrator Associate", code: "AZ-104", level: "Associate" },
+  { name: "Azure Solutions Architect Expert", code: "AZ-305", level: "Expert" },
+  { name: "DevOps Engineer Expert", code: "AZ-400", level: "Expert" },
 ];
 
-const professionalAreas = [
-  "Cloud Architecture",
-  "Microsoft Azure",
-  "Azure PaaS",
-  "Linux Administration",
-  "Terraform",
-  "Azure DevOps",
-  "Packer",
-  "CI/CD",
-  "Cloud Security",
-  "Cost Optimization",
-  "Infrastructure Automation",
+const skillGroups = [
+  { title: "Cloud & Architecture", items: ["Microsoft Azure", "Azure PaaS", "Cloud Architecture", "Cost Optimization", "Cloud Security"] },
+  { title: "Automation & Delivery", items: ["Terraform", "Azure DevOps", "Packer", "CI/CD", "Infrastructure Automation"] },
+  { title: "Systems", items: ["Linux Administration"] },
 ];
 
 const exploringAreas = [
@@ -61,249 +56,313 @@ const exploringAreas = [
   description="Learn about Prashant Hegde, a cloud professional with 13+ years of experience in cloud infrastructure, architecture, operations and automation."
   active="about"
 >
-  <section class="page-intro container">
-    <p class="eyebrow">ABOUT ME</p>
-    <h1>Cloud professional.<br /><span>Curious about what comes next.</span></h1>
-    <p>
-      I'm Prashant Hegde, a technology professional with 13+ years of
-      experience across cloud infrastructure, operations and automation.
-      My work focuses on helping teams make better infrastructure decisions,
-      improve operational efficiency and build reliable cloud environments.
-    </p>
-    <p>
-      Over the years, I've worked across infrastructure operations, cloud
-      platforms, automation, security and cost optimization. I enjoy
-      understanding complex environments, identifying opportunities for
-      improvement and translating technical challenges into practical
-      recommendations.
-    </p>
+  <PageHero
+    eyebrow="About me"
+    title="Cloud professional."
+    accent="Curious about what comes next."
+  >
+    <div class="intro">
+      <p class="lead">
+        I'm Prashant Hegde, a technology professional with 13+ years of
+        experience across cloud infrastructure, operations and automation.
+        My work focuses on helping teams make better infrastructure
+        decisions, improve operational efficiency and build reliable cloud
+        environments.
+      </p>
+      <p class="lead">
+        Over the years I've worked across infrastructure operations, cloud
+        platforms, automation, security and cost optimization. I enjoy
+        understanding complex environments, identifying opportunities for
+        improvement and translating technical challenges into practical
+        recommendations.
+      </p>
+    </div>
+  </PageHero>
+
+  <section class="container stats reveal">
+    {stats.map((s) => (
+      <div class="stat">
+        <strong class="grad-text">{s.value}</strong>
+        <span>{s.label}</span>
+      </div>
+    ))}
   </section>
 
   <section class="section container">
-    <p class="eyebrow">CAREER JOURNEY</p>
-    <h2>Experience</h2>
-
-    <div class="timeline">
-      {experience.map((item) => (
-        <article class="experience-item">
-          <div class="experience-period">{item.period}</div>
-          <div class="experience-content">
-            <h3>{item.company}</h3>
+    <SectionHeading eyebrow="Career journey" title="Experience" />
+    <ol class="timeline">
+      {experience.map((item, i) => (
+        <li class="timeline-item reveal" style={`--d:${i}`}>
+          <span class:list={["dot", { current: item.current }]} aria-hidden="true"></span>
+          <div class="card is-interactive">
+            <div class="row">
+              <h3>{item.company}</h3>
+              <span class="period">{item.period}</span>
+            </div>
             <p class="role">{item.role}</p>
-            <p class="description">{item.description}</p>
+            <p>{item.description}</p>
           </div>
-        </article>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="section container">
+    <SectionHeading
+      eyebrow="Technical background"
+      title="Areas of experience"
+      description="Technologies and disciplines from my professional work."
+    />
+    <div class="card-grid cols-3">
+      {skillGroups.map((group, i) => (
+        <div class="card reveal" style={`--d:${i}`}>
+          <h3>{group.title}</h3>
+          <div class="tags first">
+            {group.items.map((item) => <span class="tag">{item}</span>)}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="exploring reveal">
+      <h3>Currently exploring</h3>
+      <p>Technologies and practices I'm developing through hands-on learning and personal projects.</p>
+      <div class="tags">
+        {exploringAreas.map((area) => <span class="tag outline">{area}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section container">
+    <SectionHeading eyebrow="Certifications" title="Professional certifications" />
+    <div class="card-grid cols-3">
+      {certifications.map((cert, i) => (
+        <div class="card reveal" style={`--d:${i}`}>
+          <span class="pill pill-live cert-level">{cert.level}</span>
+          <h3>Microsoft Certified:<br />{cert.name}</h3>
+          <p class="code">{cert.code}</p>
+        </div>
       ))}
     </div>
   </section>
 
-<section class="section container">
-  <p class="eyebrow">TECHNICAL BACKGROUND</p>
-  <h2>Areas of experience</h2>
-  <p class="section-intro">
-    Technologies and disciplines from my professional experience.
-  </p>
-
-  <div class="areas">
-    {professionalAreas.map((area) => <span>{area}</span>)}
-  </div>
-
-  <h3 class="subheading">Currently exploring</h3>
-  <p class="section-intro">
-    Technologies and practices I'm developing through hands-on learning
-    and personal projects.
-  </p>
-
-  <div class="areas exploring-areas">
-    {exploringAreas.map((area) => <span>{area}</span>)}
-  </div>
-</section>
-
-  <section class="section container">
-    <p class="eyebrow">CERTIFICATIONS</p>
-    <h2>Professional certifications</h2>
-
-    <ul class="certifications">
-      {certifications.map((certification) => (
-        <li>{certification}</li>
-      ))}
-    </ul>
-  </section>
-
-  <section class="section container direction-section">
-    <p class="eyebrow">WHAT'S NEXT</p>
-    <h2>Continuously learning and exploring.</h2>
-    <p>
-      I'm expanding my focus beyond traditional cloud operations towards
-      cloud architecture, platform engineering and AI infrastructure.
-      I'm currently exploring Kubernetes, AWS, GitOps and AI-assisted
-      automation, with a focus on applying these technologies to practical
-      infrastructure and operations challenges.
-    </p>
+  <section class="container">
+    <div class="next reveal">
+      <p class="eyebrow">What's next</p>
+      <h2>Continuously learning and exploring.</h2>
+      <p>
+        I'm expanding my focus beyond traditional cloud operations towards
+        cloud architecture, platform engineering and AI infrastructure —
+        exploring Kubernetes, AWS, GitOps and AI-assisted automation, and
+        applying them to practical infrastructure and operations challenges.
+      </p>
+      <a class="btn btn-primary" href="/contact/">Get in touch</a>
+    </div>
   </section>
 </BaseLayout>
 
 <style>
-  .page-intro {
-    padding-top: 88px;
-    padding-bottom: 76px;
-    max-width: 1120px;
-  }
-
-  .eyebrow {
-    color: var(--color-accent);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    margin-bottom: 18px;
-  }
-
-  h1,
-  h2,
-  h3 {
-    font-family: var(--font-heading);
-    color: var(--color-text);
-  }
-
-  h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    line-height: 1.15;
-    letter-spacing: -0.05em;
-  }
-
-  h1 span {
-    color: var(--color-muted);
-    font-weight: 500;
-  }
-
-  .page-intro > p:not(.eyebrow) {
-    color: var(--color-muted);
-    font-size: 1.05rem;
-    line-height: 1.85;
+  .intro {
+    display: grid;
+    gap: 6px;
     max-width: 760px;
-    margin-top: 22px;
+    margin-top: 24px;
   }
 
-  .section {
-    padding-top: 56px;
-    padding-bottom: 64px;
-    border-top: 1px solid var(--color-border);
+  .intro .lead {
+    margin: 0 0 14px;
   }
 
-  h2 {
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 26px 28px;
+  }
+
+  .stat + .stat {
+    border-left: 1px solid var(--border);
+  }
+
+  .stat strong {
+    font-family: var(--font-heading);
     font-size: clamp(1.8rem, 3vw, 2.4rem);
     letter-spacing: -0.04em;
+    line-height: 1.1;
   }
 
+  .stat span {
+    color: var(--muted);
+    font-size: 0.86rem;
+  }
+
+  /* Timeline */
   .timeline {
-    margin-top: 34px;
-    max-width: 850px;
-  }
-
-  .experience-item {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 34px;
+    position: relative;
     display: grid;
-    grid-template-columns: 190px 1fr;
-    gap: 28px;
-    padding: 28px 0;
-    border-bottom: 1px solid var(--color-border);
+    gap: 20px;
+    max-width: 900px;
   }
 
-  .experience-period {
-    color: var(--color-muted);
-    font-size: 0.88rem;
-    padding-top: 4px;
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), var(--border));
   }
 
-  .experience-content h3 {
-    font-size: 1.2rem;
+  .timeline-item {
+    position: relative;
+  }
+
+  .dot {
+    position: absolute;
+    left: -34px;
+    top: 30px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+  }
+
+  .dot.current {
+    background: var(--accent);
+    box-shadow: 0 0 0 5px var(--accent-soft);
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+  }
+
+  .row h3 {
+    margin: 0;
+    font-size: 1.3rem;
+  }
+
+  .period {
+    color: var(--subtle);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
   }
 
   .role {
-    color: var(--color-accent);
+    color: var(--accent) !important;
     font-weight: 600;
-    margin-top: 5px;
+    margin: 4px 0 12px !important;
   }
 
-  .description {
-    color: var(--color-muted);
-    line-height: 1.75;
-    margin-top: 14px;
+  /* Skills */
+  .tags.first {
+    margin-top: 6px;
+    padding-top: 12px;
   }
 
-  .section-intro {
-    color: var(--color-muted);
-    margin-top: 12px;
-    line-height: 1.7;
+  .tag.outline {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--muted);
   }
 
-  .areas {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 26px;
-    max-width: 850px;
+  .exploring {
+    margin-top: 28px;
+    padding: 30px;
+    border: 1px dashed var(--border-strong);
+    border-radius: var(--radius-lg);
   }
 
-  .areas span {
-    background: var(--color-accent-soft);
-    color: var(--color-accent);
-    border-radius: 5px;
-    padding: 8px 12px;
+  .exploring h3 {
+    font-size: 1.15rem;
+    margin-bottom: 6px;
+  }
+
+  .exploring p {
+    color: var(--muted);
+    margin: 0;
+  }
+
+  /* Certifications */
+  .cert-level {
+    align-self: flex-start;
+    margin-bottom: 16px;
+  }
+
+  .code {
+    margin-top: 12px !important;
+    font-family: var(--font-mono);
     font-size: 0.85rem;
+    color: var(--subtle) !important;
   }
 
-  .certifications {
-    list-style: none;
-    padding: 0;
-    margin-top: 24px;
-    max-width: 850px;
+  .card h3 {
+    font-size: 1.1rem;
   }
 
-  .certifications li {
-    padding: 17px 0;
-    border-bottom: 1px solid var(--color-border);
-    color: var(--color-text);
-    line-height: 1.6;
+  /* Next */
+  .next {
+    margin-top: 72px;
+    padding: 56px 40px;
+    background:
+      radial-gradient(520px circle at 10% 0%, var(--glow-1), transparent 60%),
+      var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
   }
 
-  .direction-section {
-    padding-bottom: 100px;
+  .next h2 {
+    font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+    max-width: 20ch;
   }
 
-  .direction-section > p:last-child {
-    color: var(--color-muted);
-    line-height: 1.85;
-    max-width: 760px;
-    margin-top: 18px;
+  .next p:not(.eyebrow) {
+    color: var(--muted);
+    max-width: 640px;
+    margin: 16px 0 26px;
   }
 
-  @media (max-width: 700px) {
-    .page-intro {
-      padding-top: 64px;
-      padding-bottom: 52px;
+  @media (max-width: 960px) {
+    .stats {
+      grid-template-columns: repeat(2, 1fr);
     }
-
-    .experience-item {
-      grid-template-columns: 1fr;
-      gap: 10px;
+    .stat:nth-child(3) {
+      border-left: 0;
     }
-.subheading {
-  font-family: var(--font-heading);
-  font-size: 1.15rem;
-  color: var(--color-text);
-  margin-top: 38px;
-}
+    .stat:nth-child(n + 3) {
+      border-top: 1px solid var(--border);
+    }
+  }
 
-.exploring-areas span {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  color: var(--color-muted);
-}
-
-    .section {
-      padding-top: 44px;
-      padding-bottom: 48px;
+  @media (max-width: 680px) {
+    .timeline {
+      padding-left: 28px;
+    }
+    .dot {
+      left: -28px;
+    }
+    .next {
+      padding: 36px 24px;
+    }
+    .stat {
+      padding: 18px;
     }
   }
 </style>
-

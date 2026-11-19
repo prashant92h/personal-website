@@ -1,4 +1,3 @@
-
 ---
 title: "Building a Permanent K3s Home Lab"
 description: "My approach to building a lightweight, persistent Kubernetes home lab for self-hosted services and platform engineering experiments."
@@ -12,8 +11,6 @@ tags:
 featured: true
 draft: true
 ---
-
-# Building a Permanent K3s Home Lab
 
 A home lab is more than a place to experiment with technology. It can become a practical environment for learning, building and operating real infrastructure.
 

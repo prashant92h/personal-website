@@ -1,23 +1,17 @@
-
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import { photographs, photoCategories } from "../../data/photos";
 
-const categories = [
-  "All",
-  "Landscapes & Nature",
-  "Wildlife",
-  "Travel",
+const hasPhotos = photographs.length > 0;
+const placeholders = [
+  { h: 260, label: "Landscapes" },
+  { h: 340, label: "Wildlife" },
+  { h: 220, label: "Travel" },
+  { h: 300, label: "Nature" },
+  { h: 240, label: "Details" },
+  { h: 320, label: "Moments" },
 ];
-
-// Add photographs here as the collection is ready.
-// Keep original images backed up locally and use optimized
-// cloud-hosted versions for the public website.
-const photographs: {
-  title: string;
-  category: string;
-  image: string;
-  alt: string;
-}[] = [];
 ---
 
 <BaseLayout
@@ -25,186 +19,380 @@ const photographs: {
   description="A personal photography collection featuring landscapes, nature, wildlife and travel by Prashant Hegde."
   active="photography"
 >
-  <section class="page-intro container">
-    <p class="eyebrow">PHOTOGRAPHY</p>
-    <h1>Perspectives<br /><span>beyond technology.</span></h1>
-    <p>
-      Moments, places and details captured along the way.
-      A collection of landscapes, nature, wildlife and travel.
-    </p>
-  </section>
+  <PageHero
+    eyebrow="Photography"
+    title="Perspectives"
+    accent="beyond technology."
+    lead="Moments, places and details captured along the way — landscapes, nature, wildlife and travel."
+  />
 
-  <section class="gallery-section container">
-    <div class="category-list" aria-label="Photography categories">
-      {categories.map((category, index) => (
-        <span class:list={["category", { selected: index === 0 }]}>
-          {category}
-        </span>
-      ))}
+  <section class="container gallery-section">
+    <div class="filters" role="group" aria-label="Filter photographs by category">
+      <button type="button" class="chip selected" data-cat="all">All</button>
+      {photoCategories.map((c) => <button type="button" class="chip" data-cat={c}>{c}</button>)}
     </div>
 
-    {photographs.length > 0 ? (
-      <div class="photo-grid">
-        {photographs.map((photo) => (
-          <figure class="photo-card">
-            <img src={photo.image} alt={photo.alt} loading="lazy" />
+    {hasPhotos ? (
+      <div class="masonry" id="gallery">
+        {photographs.map((photo, i) => (
+          <figure class="photo" data-cat={photo.category} data-index={i}>
+            <button type="button" class="photo-btn" aria-label={`View ${photo.title} full size`}>
+              <img
+                src={photo.image}
+                alt={photo.alt}
+                width={photo.width}
+                height={photo.height}
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
             <figcaption>
               <strong>{photo.title}</strong>
-              <span>{photo.category}</span>
+              <span>{photo.location ?? photo.category}</span>
             </figcaption>
           </figure>
         ))}
       </div>
     ) : (
-      <div class="empty-gallery">
-        <h2>A collection in the making.</h2>
-        <p>
-          Photographs from landscapes, wildlife and travels will find
-          their place here.
-        </p>
+      <div class="coming">
+        <div class="masonry skeleton" aria-hidden="true">
+          {placeholders.map((p) => (
+            <div class="ph" style={`height:${p.h}px`}><span>{p.label}</span></div>
+          ))}
+        </div>
+        <div class="coming-note card">
+          <span class="pill pill-live">In the making</span>
+          <h2>A collection in the making.</h2>
+          <p>
+            Photographs from landscapes, wildlife and travels will find their
+            place here. Check back soon.
+          </p>
+        </div>
       </div>
     )}
   </section>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+    <button type="button" class="lb-close" aria-label="Close viewer">×</button>
+    <button type="button" class="lb-nav prev" aria-label="Previous photo">‹</button>
+    <figure>
+      <img id="lb-img" alt="" />
+      <figcaption id="lb-cap"></figcaption>
+    </figure>
+    <button type="button" class="lb-nav next" aria-label="Next photo">›</button>
+  </dialog>
 </BaseLayout>
 
 <style>
-  .page-intro {
-    padding-top: 88px;
-    padding-bottom: 64px;
-  }
-
-  .eyebrow {
-    color: var(--color-accent);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    margin-bottom: 18px;
-  }
-
-  h1, h2 {
-    font-family: var(--font-heading);
-    color: var(--color-text);
-  }
-
-  h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    line-height: 1.15;
-    letter-spacing: -0.05em;
-  }
-
-  h1 span {
-    color: var(--color-muted);
-    font-weight: 500;
-  }
-
-  .page-intro > p:last-child {
-    color: var(--color-muted);
-    font-size: 1.05rem;
-    line-height: 1.8;
-    max-width: 650px;
-    margin-top: 22px;
-  }
-
   .gallery-section {
-    padding-bottom: 100px;
+    padding-bottom: 40px;
   }
 
-  .category-list {
+  .filters {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
     padding-bottom: 28px;
-    border-bottom: 1px solid var(--color-border);
   }
 
-  .category {
-    padding: 8px 14px;
-    border: 1px solid var(--color-border);
-    border-radius: 20px;
-    color: var(--color-muted);
-    font-size: 0.85rem;
+  .chip {
+    padding: 8px 16px;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--muted);
+    font-size: 0.86rem;
+    font-weight: 550;
+    cursor: pointer;
+    transition: all var(--transition);
   }
 
-  .category.selected {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
-    color: white;
+  .chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
   }
 
-  .photo-grid {
+  .chip.selected {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent);
+  }
+
+  .masonry {
     columns: 3;
     column-gap: 18px;
-    padding-top: 28px;
   }
 
-  .photo-card {
+  .photo {
     break-inside: avoid;
     margin: 0 0 18px;
     overflow: hidden;
+    border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    background: var(--color-surface);
+    background: var(--surface);
   }
 
-  .photo-card img {
+  .photo[hidden] {
+    display: none;
+  }
+
+  .photo-btn {
     display: block;
     width: 100%;
-    height: auto;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: zoom-in;
+    overflow: hidden;
   }
 
-  .photo-card figcaption {
+  .photo-btn img {
+    width: 100%;
+    height: auto;
+    transition: transform 500ms var(--ease);
+  }
+
+  .photo:hover .photo-btn img {
+    transform: scale(1.04);
+  }
+
+  figcaption {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    padding: 12px 14px;
+    gap: 2px;
+    padding: 12px 16px 14px;
   }
 
-  .photo-card figcaption strong {
-    color: var(--color-text);
-    font-size: 0.9rem;
+  figcaption strong {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
   }
 
-  .photo-card figcaption span {
-    color: var(--color-muted);
-    font-size: 0.78rem;
+  figcaption span {
+    color: var(--subtle);
+    font-size: 0.8rem;
   }
 
-  .empty-gallery {
-    padding: 100px 20px;
+  /* Empty-state skeleton */
+  .coming {
+    position: relative;
+  }
+
+  .skeleton {
+    opacity: 0.55;
+    -webkit-mask-image: linear-gradient(to bottom, #000 40%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 40%, transparent 100%);
+  }
+
+  .ph {
+    break-inside: avoid;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+    border: 1px dashed var(--border-strong);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, var(--accent-soft), var(--surface-2));
+    color: var(--subtle);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+  }
+
+  .coming-note {
+    position: absolute;
+    left: 50%;
+    top: 90px;
+    transform: translateX(-50%);
+    width: min(440px, 92%);
+    align-items: center;
     text-align: center;
+    box-shadow: var(--shadow-md);
   }
 
-  .empty-gallery h2 {
+  .coming-note .pill {
+    margin-bottom: 14px;
+  }
+
+  .coming-note h2 {
     font-size: 1.5rem;
   }
 
-  .empty-gallery p {
-    color: var(--color-muted);
-    line-height: 1.7;
-    max-width: 460px;
-    margin: 12px auto 0;
+  .coming-note p {
+    margin-top: 10px;
   }
 
-  @media (max-width: 800px) {
-    .photo-grid {
+  /* Lightbox */
+  .lightbox {
+    width: 100vw;
+    max-width: 100vw;
+    height: 100dvh;
+    max-height: 100dvh;
+    margin: 0;
+    padding: 24px;
+    border: 0;
+    background: rgba(4, 10, 7, 0.92);
+    color: #e8f2ec;
+  }
+
+  .lightbox[open] {
+    display: grid;
+    place-items: center;
+  }
+
+  .lightbox::backdrop {
+    background: rgba(4, 10, 7, 0.7);
+  }
+
+  .lightbox figure {
+    margin: 0;
+    max-width: min(1100px, 100%);
+    text-align: center;
+  }
+
+  .lightbox img {
+    max-height: calc(100dvh - 140px);
+    width: auto;
+    margin-inline: auto;
+    border-radius: var(--radius-md);
+  }
+
+  .lightbox figcaption {
+    padding: 14px 0 0;
+    align-items: center;
+    color: #e8f2ec;
+  }
+
+  .lightbox figcaption span {
+    color: #9db3a7;
+  }
+
+  .lb-close,
+  .lb-nav {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background var(--transition);
+  }
+
+  .lb-close:hover,
+  .lb-nav:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .lb-close {
+    top: 18px;
+    right: 18px;
+  }
+
+  .lb-nav {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .lb-nav.prev {
+    left: 18px;
+  }
+
+  .lb-nav.next {
+    right: 18px;
+  }
+
+  @media (max-width: 860px) {
+    .masonry {
       columns: 2;
     }
-  }
 
-  @media (max-width: 700px) {
-    .page-intro {
-      padding-top: 64px;
-      padding-bottom: 48px;
-    }
-
-    .empty-gallery {
-      padding: 72px 16px;
+    .coming-note {
+      position: static;
+      transform: none;
+      margin: -40px auto 0;
     }
   }
 
-  @media (max-width: 480px) {
-    .photo-grid {
+  @media (max-width: 520px) {
+    .masonry {
       columns: 1;
+    }
+
+    .lb-nav {
+      top: auto;
+      bottom: 20px;
+      transform: none;
     }
   }
 </style>
 
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>(".chip");
+  const photos = Array.from(document.querySelectorAll<HTMLElement>(".photo"));
+
+  chips.forEach((chip) => {
+    chip.addEventListener("click", () => {
+      const cat = chip.dataset.cat;
+      chips.forEach((c) => c.classList.toggle("selected", c === chip));
+      photos.forEach((p) => {
+        p.hidden = cat !== "all" && p.dataset.cat !== cat;
+      });
+    });
+  });
+
+  const box = document.getElementById("lightbox") as HTMLDialogElement | null;
+  const img = document.getElementById("lb-img") as HTMLImageElement | null;
+  const cap = document.getElementById("lb-cap");
+
+  if (box && img && cap && photos.length > 0) {
+    let current = 0;
+    const visible = () => photos.filter((p) => !p.hidden);
+
+    const show = (el: HTMLElement) => {
+      const source = el.querySelector("img");
+      const title = el.querySelector("strong")?.textContent ?? "";
+      const sub = el.querySelector("figcaption span")?.textContent ?? "";
+      if (!source) return;
+      img.src = source.currentSrc || source.src;
+      img.alt = source.alt;
+      cap.replaceChildren();
+      const strong = document.createElement("strong");
+      strong.textContent = title;
+      const span = document.createElement("span");
+      span.textContent = sub;
+      cap.append(strong, span);
+    };
+
+    const step = (dir: number) => {
+      const list = visible();
+      if (list.length === 0) return;
+      current = (current + dir + list.length) % list.length;
+      show(list[current]);
+    };
+
+    photos.forEach((p) => {
+      p.querySelector("button")?.addEventListener("click", () => {
+        const list = visible();
+        current = Math.max(0, list.indexOf(p));
+        show(p);
+        box.showModal();
+      });
+    });
+
+    box.querySelector(".lb-close")?.addEventListener("click", () => box.close());
+    box.querySelector(".prev")?.addEventListener("click", () => step(-1));
+    box.querySelector(".next")?.addEventListener("click", () => step(1));
+    box.addEventListener("click", (e) => {
+      if (e.target === box) box.close();
+    });
+    box.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") step(-1);
+      if (e.key === "ArrowRight") step(1);
+    });
+  }
+</script>
