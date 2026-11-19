@@ -28,7 +28,7 @@ import { professionalProjects, personalProjects } from "../../data/projects";
         <article class="card is-interactive reveal" style={`--d:${i % 2}`}>
           {project.metric && (
             <div class="metric">
-              <strong class="grad-text">{project.metric.value}</strong>
+              <strong class:list={{ "grad-text": project.metric.primary }}>{project.metric.value}</strong>
               <span>{project.metric.label}</span>
             </div>
           )}
@@ -86,7 +86,8 @@ import { professionalProjects, personalProjects } from "../../data/projects";
   .metric strong {
     font-family: var(--font-heading);
     font-size: 2.3rem;
-    letter-spacing: -0.045em;
+    font-weight: 700;
+    letter-spacing: -0.03em;
     line-height: 1.1;
   }
 

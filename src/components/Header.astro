@@ -93,7 +93,7 @@ const { active = "" } = Astro.props;
     gap: 11px;
     font-family: var(--font-heading);
     font-size: 1.05rem;
-    font-weight: 750;
+    font-weight: 650;
     letter-spacing: -0.02em;
     white-space: nowrap;
   }
@@ -113,10 +113,10 @@ const { active = "" } = Astro.props;
 
   nav a {
     padding: 8px 14px;
-    border-radius: 999px;
+    border-radius: var(--radius-sm);
     color: var(--muted);
-    font-size: 0.9rem;
-    font-weight: 550;
+    font-size: 0.92rem;
+    font-weight: 500;
     transition: color var(--transition), background var(--transition);
   }
 
@@ -146,7 +146,7 @@ const { active = "" } = Astro.props;
     place-items: center;
     width: 40px;
     height: 40px;
-    border-radius: 50%;
+    border-radius: var(--radius-btn);
     border: 1px solid var(--border-strong);
     background: var(--surface);
     cursor: pointer;

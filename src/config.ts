@@ -3,7 +3,7 @@ export const SITE = {
   url: "https://prashanthegde.in",
   tagline: "Azure Cloud & Platform Architect",
   description:
-    "Prashant Hegde — hands-on Azure cloud and platform architect with strong Azure and Linux expertise, working across infrastructure, DevOps, security, reliability and FinOps for 50+ enterprise applications. Home-lab tinkerer and amateur photographer.",
+    "Prashant Hegde is a hands-on Azure cloud and platform architect with strong Linux expertise, working across architecture, DevOps, security, reliability and FinOps for 50+ enterprise applications.",
   jobTitle: "Senior Advisory Consultant",
   employer: { name: "IBM", url: "https://www.ibm.com" },
   ogImage: "/og-image.png",

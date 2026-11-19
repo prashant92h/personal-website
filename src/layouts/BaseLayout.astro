@@ -140,15 +140,6 @@ const structuredData = jsonLd ?? (active === "" && Astro.url.pathname === "/" ? 
       } else {
         items.forEach((el) => el.classList.add("in"));
       }
-
-      // Card spotlight follows the cursor
-      document.addEventListener("pointermove", (event) => {
-        const card = (event.target as Element | null)?.closest<HTMLElement>(".card");
-        if (!card) return;
-        const rect = card.getBoundingClientRect();
-        card.style.setProperty("--mx", `${event.clientX - rect.left}px`);
-        card.style.setProperty("--my", `${event.clientY - rect.top}px`);
-      });
     </script>
   </body>
 </html>

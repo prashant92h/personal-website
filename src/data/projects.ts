@@ -6,7 +6,7 @@ export interface Project {
   description: string;
   areas: string[];
   status?: "In progress" | "Exploring";
-  metric?: { value: string; label: string };
+  metric?: { value: string; label: string; primary?: boolean };
   /** Optional case-study structure, used only where the facts are known. */
   story?: { challenge: string; approach: string; impact: string };
 }
@@ -17,7 +17,7 @@ export const professionalProjects: Project[] = [
     description:
       "Identified and implemented Azure optimization opportunities across production and non-production environments, including compute right-sizing, storage optimization, scheduling, reservation opportunities, unused-resource cleanup and architecture changes. These initiatives have contributed to more than $1M in cumulative cloud cost savings.",
     areas: ["FinOps", "Right-sizing", "Reservations", "Storage optimization", "Scheduling"],
-    metric: { value: "$1M+", label: "cumulative cloud cost savings" },
+    metric: { value: "$1M+", label: "cumulative cloud cost savings", primary: true },
     story: {
       challenge:
         "Keeping the cost of a large Azure estate, spanning production and non-production environments, efficient as it grows and changes.",
@@ -97,32 +97,32 @@ export const personalProjects: Project[] = [
 export const capabilities = [
   {
     title: "Cloud architecture & modernization",
-    text: "Architecture reviews and modernization across Azure compute, networking, storage, Linux, identity, Kubernetes and managed services, with an emphasis on designs that remain practical to operate after go-live.",
+    text: "Architecture reviews and modernization across Azure compute, networking, storage, Linux, identity and Kubernetes, designed to stay practical to operate after go-live.",
     icon: "M3 17a4 4 0 0 1 1-7.9 5.5 5.5 0 0 1 10.7-1A4.5 4.5 0 1 1 17 17z",
   },
   {
     title: "FinOps & optimization",
-    text: "Azure cost analysis, right-sizing, service-tier optimization, storage optimization, workload scheduling, reservation strategy, resource cleanup and architecture changes that have contributed to more than $1M in cumulative cloud cost savings.",
+    text: "Cost analysis, right-sizing, scheduling, reservations and architecture changes that have contributed to more than $1M in cumulative cloud cost savings.",
     icon: "M3 3v18h18M7 14l4-4 3 3 5-6",
   },
   {
     title: "Security & reliability",
-    text: "Azure and Linux security, identity, networking, vulnerability remediation, patching, TLS/certificate management, backup, disaster recovery and resilient infrastructure patterns for production workloads.",
+    text: "Azure and Linux security, identity, vulnerability remediation, patching, certificates, backup and disaster recovery for production workloads.",
     icon: "M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z",
   },
   {
     title: "Platform engineering & automation",
-    text: "Azure DevOps, CI/CD, infrastructure automation and Terraform-managed environments, working with and managing Terraform-based infrastructure with a focus on repeatable and controlled operations.",
+    text: "Azure DevOps, CI/CD, infrastructure automation and Terraform-managed environments, focused on repeatable and controlled infrastructure operations.",
     icon: "M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16",
   },
 ];
 
 /** Homepage "selected work / impact" tiles. */
 export const impact = [
-  { value: "50+", label: "enterprise applications", title: "Azure Architecture & Operations", text: "Architecture guidance and operational improvements across a large estate of production applications." },
-  { value: "$1M+", label: "cumulative cloud cost savings", title: "Cloud Cost Optimization", text: "FinOps analysis, right-sizing, scheduling and architecture changes across production and non-production." },
-  { value: "100s", label: "of Azure resources", title: "Infrastructure Assessment & Modernization", text: "Assessing large Azure environments to find architecture, security and cost improvements." },
-  { value: "100s", label: "of Linux servers", title: "Operational Automation", text: "Making routine Linux operations repeatable and controlled through automation." },
+  { value: "$1M+", label: "cumulative cloud cost savings", title: "Cloud Cost Optimization", text: "FinOps analysis, right-sizing, scheduling and architecture changes.", primary: true },
+  { value: "50+", label: "enterprise applications", title: "Azure Architecture & Operations", text: "Architecture guidance across a large application estate.", primary: false },
+  { value: "100s", label: "of Azure resources", title: "Infrastructure Assessment & Modernization", text: "Assessing Azure environments for architecture, security and cost improvements.", primary: false },
+  { value: "100s", label: "of Linux servers", title: "Linux Operational Automation", text: "Making routine Linux operations repeatable and controlled.", primary: false },
 ];
 
 /** Homepage "what I'm exploring". Set `href` when a project is ready to link. */
@@ -134,20 +134,12 @@ export const exploring: {
 } = {
   title: "Agentic AI for cloud operations",
   text: "I'm exploring how AI agents can help solve practical cloud operations problems, from infrastructure assessment and patching to incident triage, cost optimization and certificate lifecycle management. I've also been gaining hands-on experience using GitHub Copilot to build and customize AI agents.",
-  tags: [
-    "AI agents",
-    "GitHub Copilot",
-    "Infrastructure assessment",
-    "Patching",
-    "Incident triage",
-    "Cost optimization",
-    "Certificate lifecycle",
-  ],
+  tags: ["AI Agents", "GitHub Copilot", "Cloud Operations"],
   href: undefined,
 };
 
 export const stats = [
-  { value: "50+", label: "Enterprise applications" },
-  { value: "$1M+", label: "Cumulative cloud cost savings" },
-  { value: "13+", label: "Years in cloud & infrastructure" },
+  { value: "50+", label: "Enterprise applications", primary: false },
+  { value: "$1M+", label: "Cumulative cloud cost savings", primary: true },
+  { value: "13+", label: "Years in cloud & infrastructure", primary: false },
 ];
