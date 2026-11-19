@@ -28,10 +28,11 @@ export const SITE = {
   ],
 } as const;
 
+// Visible labels only: routes (/projects/, /blog/) stay stable for backlinks.
 export const NAV = [
-  { label: "Projects", href: "/projects/", id: "projects" },
+  { label: "Work", href: "/projects/", id: "projects" },
+  { label: "Field Notes", href: "/blog/", id: "blog" },
   { label: "Lab", href: "/lab/", id: "lab" },
-  { label: "Blog", href: "/blog/", id: "blog" },
   { label: "Photography", href: "/photography/", id: "photography" },
   { label: "About", href: "/about/", id: "about" },
 ] as const;

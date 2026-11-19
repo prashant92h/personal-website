@@ -16,20 +16,27 @@ const formatDate = (date: Date) =>
 ---
 
 <BaseLayout
-  title="Blog | Prashant Hegde"
-  description="Notes on Azure cost optimization, security, availability and DevOps from the field, plus home-lab experiments and photography."
+  title="Field Notes | Prashant Hegde"
+  description="Practical notes from building, operating and troubleshooting cloud infrastructure."
   active="blog"
 >
   <PageHero
-    eyebrow="Writing"
+    eyebrow="Field Notes"
     title="Notes from the field"
     accent="and the lab."
-    lead="Practical lessons on running Azure and Linux workloads — cost, security, reliability and DevOps — plus home-lab experiments and the odd photography story."
+    lead="Practical notes from building, operating and troubleshooting cloud infrastructure."
   >
     <p class="rss"><a class="text-link" href="/rss.xml">Subscribe via RSS <span aria-hidden="true">→</span></a></p>
   </PageHero>
 
   <div class="container content">
+    {posts.length === 0 && (
+      <div class="card empty reveal">
+        <h2>No notes published yet.</h2>
+        <p>New notes will appear here as they are published. The RSS feed is the easiest way to follow along.</p>
+      </div>
+    )}
+
     {featuredPost && (
       <section aria-labelledby="featured-heading" class="reveal">
         <p class="eyebrow" id="featured-heading">Featured article</p>
@@ -49,13 +56,14 @@ const formatDate = (date: Date) =>
       </section>
     )}
 
+    {posts.length > 0 && (
     <section class="archive" aria-labelledby="archive-heading">
       <div class="archive-head">
         <div>
           <p class="eyebrow">The archive</p>
-          <h2 id="archive-heading">Latest writing</h2>
+          <h2 id="archive-heading">All notes</h2>
         </div>
-        <span class="count">{posts.length} {posts.length === 1 ? "article" : "articles"}</span>
+        <span class="count">{posts.length} {posts.length === 1 ? "note" : "notes"}</span>
       </div>
 
       {categories.length > 1 && (
@@ -84,11 +92,12 @@ const formatDate = (date: Date) =>
         </div>
       ) : (
         <div class="card empty">
-          <h3>{featuredPost ? "That's everything so far." : "More ideas are taking shape."}</h3>
-          <p>New articles will appear here as they are published.</p>
+          <h3>That's everything so far.</h3>
+          <p>New notes will appear here as they are published.</p>
         </div>
       )}
     </section>
+    )}
   </div>
 </BaseLayout>
 

@@ -9,8 +9,8 @@ export const GET: APIRoute = async (context) => {
   );
 
   return rss({
-    title: `${SITE.name} — Blog`,
-    description: "Notes on Azure, Linux, cost optimization, security, reliability and DevOps from the field, plus home-lab experiments and photography.",
+    title: `${SITE.name} — Field Notes`,
+    description: "Practical notes from building, operating and troubleshooting cloud infrastructure.",
     site: context.site ?? SITE.url,
     items: posts.map((post) => ({
       title: post.data.title,

@@ -159,8 +159,8 @@ const formatDate = (date: Date) =>
 
   {posts.length > 0 && (
     <section class="section container">
-      <SectionHeading eyebrow="Latest writing" title="Notes from the field and the lab">
-        <a class="text-link" href="/blog/">All articles <span aria-hidden="true">→</span></a>
+      <SectionHeading eyebrow="Field Notes" title="Latest notes from the field">
+        <a class="text-link" href="/blog/">All notes <span aria-hidden="true">→</span></a>
       </SectionHeading>
       <div class="card-grid cols-3">
         {posts.map((post, i) => (
@@ -474,7 +474,7 @@ const formatDate = (date: Date) =>
     margin-top: 24px;
   }
 
-  /* Writing cards (shown once an article is published) */
+  /* Field Notes cards (shown once a note is published) */
   .self-start {
     align-self: flex-start;
     margin-bottom: 16px;

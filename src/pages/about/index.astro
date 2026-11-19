@@ -11,7 +11,7 @@ const experience = [
     period: "May 2021 – Present",
     current: true,
     description:
-      "Hands-on Azure cloud and platform architect supporting 50+ enterprise applications on Azure and Azure DevOps. Work spans architecture and modernization, cost optimization, security and vulnerability remediation, reliability, Linux server operations, pipeline standardisation and automation, including working with and managing Terraform-based infrastructure. Also carries team-lead responsibilities alongside technical architecture work.",
+      "Supporting 50+ enterprise applications on Azure and Azure DevOps across architecture and modernization, cost optimization, security, reliability, Linux server operations and automation, working with Terraform-managed environments. Carries team-lead responsibilities alongside technical architecture work.",
   },
   {
     company: "Accenture",
@@ -36,24 +36,17 @@ const certifications = [
 ];
 
 const skillGroups = [
-  { title: "Azure & cloud", items: ["Microsoft Azure", "Azure PaaS", "Architecture & Modernization", "Cost Optimization (FinOps)", "High Availability", "Backup & Recovery"] },
-  { title: "Linux & systems", items: ["Linux Administration", "Production Troubleshooting", "Patching", "Vulnerability Remediation", "SSH & Access", "TLS / Certificates", "Identity Integration", "Hosting"] },
-  { title: "Platform & DevOps", items: ["Azure DevOps", "CI/CD Pipelines", "Terraform (working with & managing)", "Packer", "Kubernetes / K3s", "Automation"] },
+  { title: "Azure & cloud", items: ["Microsoft Azure", "Architecture & modernization", "FinOps & cost optimization", "High availability", "Backup & recovery", "Azure PaaS"] },
+  { title: "Linux & systems", items: ["Linux administration", "Production troubleshooting", "Patching & remediation", "SSH & access", "TLS & certificates", "Identity integration"] },
+  { title: "Platform & DevOps", items: ["Azure DevOps", "CI/CD pipelines", "Terraform", "Packer", "Kubernetes", "Automation"] },
 ];
 
-const growingAreas = [
-  "AWS — Foundational",
-  "GitHub Copilot",
-  "AI Agents",
-  "Kubernetes (K3s home lab)",
-  "GitOps",
-  "Terraform (deeper)",
-];
+const growingAreas = ["AI agents", "GitHub Copilot", "GitOps", "AWS fundamentals"];
 ---
 
 <BaseLayout
   title="About | Prashant Hegde"
-  description="Prashant Hegde is a hands-on Azure cloud and platform architect with strong Azure and Linux expertise, working across architecture, FinOps, security, reliability and automation for 50+ enterprise applications."
+  description="Prashant Hegde is a hands-on Azure cloud and platform architect with strong Linux expertise, working across architecture, FinOps, security, reliability and automation for 50+ enterprise applications."
   active="about"
 >
   <PageHero
@@ -63,22 +56,16 @@ const growingAreas = [
   >
     <div class="intro">
       <p class="lead">
-        I'm Prashant Hegde, a hands-on Azure cloud and platform architect with
-        13+ years in cloud and infrastructure. Azure and Linux are my core
-        strengths, and I currently support 50+ enterprise applications across
-        architecture, modernization, cost optimization, security, reliability
-        and automation.
+        I'm Prashant Hegde, a cloud and platform architect with 13+ years in
+        cloud and infrastructure. Azure and Linux are my core strengths, and I
+        currently support 50+ enterprise applications across architecture,
+        cost, security, reliability and automation.
       </p>
       <p class="lead">
-        My work is mostly about production environments: reviewing
-        utilization and spend, closing vulnerabilities, strengthening
-        availability and standardising pipelines. I enjoy digging into complex
-        environments and turning findings into practical recommendations
-        teams can act on.
-      </p>
-      <p class="lead">
-        Away from work I tinker with a Kubernetes home lab and take photos
-        as an amateur — landscapes, wildlife and travel.
+        My work is mostly production: reviewing spend and utilization, closing
+        vulnerabilities, strengthening availability and standardising
+        pipelines. I enjoy digging into complex environments and turning
+        findings into recommendations teams can act on.
       </p>
     </div>
   </PageHero>
@@ -113,6 +100,24 @@ const growingAreas = [
 
   <section class="section container">
     <SectionHeading
+      eyebrow="Technical background"
+      title="What I work with"
+      description="Azure and Linux are the core of the work."
+    />
+    <div class="card-grid cols-3">
+      {skillGroups.map((group, i) => (
+        <div class="card reveal" style={`--d:${i}`}>
+          <h3>{group.title}</h3>
+          <div class="tags first">
+            {group.items.map((item) => <span class="tag">{item}</span>)}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section container">
+    <SectionHeading
       eyebrow="Beyond architecture"
       title="Technical leadership and delivery"
     />
@@ -128,25 +133,9 @@ const growingAreas = [
   </section>
 
   <section class="section container">
-    <SectionHeading
-      eyebrow="Technical background"
-      title="What I work with"
-      description="Azure and Linux are the core. Terraform is something I work with and manage rather than an area of deep expertise."
-    />
-    <div class="card-grid cols-3">
-      {skillGroups.map((group, i) => (
-        <div class="card reveal" style={`--d:${i}`}>
-          <h3>{group.title}</h3>
-          <div class="tags first">
-            {group.items.map((item) => <span class="tag">{item}</span>)}
-          </div>
-        </div>
-      ))}
-    </div>
-
     <div class="exploring reveal">
-      <h3>Additional &amp; growing skills</h3>
-      <p>Areas I'm building up. I learned AWS fundamentals and hold the AWS SysOps Administrator Associate certification, but Azure remains my primary platform.</p>
+      <h3>Currently exploring</h3>
+      <p>Areas I'm building up alongside the day job.</p>
       <div class="tags">
         {growingAreas.map((area) => <span class="tag outline">{area}</span>)}
       </div>
@@ -154,7 +143,7 @@ const growingAreas = [
   </section>
 
   <section class="section container">
-    <SectionHeading eyebrow="Certifications" title="Professional certifications" />
+    <SectionHeading eyebrow="Credentials" title="Certifications" />
     <div class="card-grid cols-3">
       {certifications.map((cert, i) => (
         <div class="card reveal" style={`--d:${i}`}>
@@ -165,20 +154,18 @@ const growingAreas = [
       ))}
     </div>
     <p class="aws-cert reveal">
-      Additional: <strong>AWS Certified SysOps Administrator – Associate</strong>.
-      AWS is a foundational, growing area for me; Azure remains my primary platform.
+      Additional: <strong>AWS Certified SysOps Administrator – Associate</strong>
     </p>
   </section>
 
   <section class="container">
     <div class="next reveal">
-      <p class="eyebrow">Beyond the day job</p>
+      <p class="eyebrow">Outside work</p>
       <h2>Still learning, still tinkering.</h2>
       <p>
-        I like understanding how things run. At work that means keeping
-        Azure and Linux workloads healthy; at home it means breaking and
-        rebuilding a Kubernetes lab, exploring AI agents and GitHub Copilot,
-        and photographing whatever catches my eye.
+        I like understanding how things run. At home that means breaking and
+        rebuilding a Kubernetes lab, and photographing landscapes, wildlife
+        and travel moments as an amateur.
       </p>
       <a class="btn btn-primary" href="/contact/">Get in touch</a>
     </div>
@@ -308,7 +295,6 @@ const growingAreas = [
   }
 
   .exploring {
-    margin-top: 28px;
     padding: 30px;
     border: 1px dashed var(--border-strong);
     border-radius: var(--radius-lg);

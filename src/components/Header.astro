@@ -25,6 +25,13 @@ const { active = "" } = Astro.props;
           {item.label}
         </a>
       ))}
+      <a
+        class:list={["nav-contact", { active: active === "contact" }]}
+        href="/contact/"
+        aria-current={active === "contact" ? "page" : undefined}
+      >
+        Contact
+      </a>
     </nav>
 
     <div class="actions">
@@ -43,7 +50,7 @@ const { active = "" } = Astro.props;
         </svg>
       </button>
 
-      <a class="btn btn-primary cta" href="/contact/">Contact</a>
+      <a class="btn btn-primary cta" href="/contact/" aria-current={active === "contact" ? "page" : undefined}>Contact</a>
 
       <button
         class="icon-btn menu-btn"
@@ -130,6 +137,11 @@ const { active = "" } = Astro.props;
     background: var(--accent-soft);
   }
 
+  /* Desktop shows the Contact button instead; the mobile menu lists it as a link */
+  .nav-contact {
+    display: none;
+  }
+
   .actions {
     display: flex;
     align-items: center;
@@ -200,6 +212,10 @@ const { active = "" } = Astro.props;
       display: none;
     }
 
+    .nav-contact {
+      display: block;
+    }
+
     .actions {
       margin-left: auto;
     }
@@ -256,16 +272,27 @@ const { active = "" } = Astro.props;
     setMenu(!header?.classList.contains("open")),
   );
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") setMenu(false);
+    if (e.key === "Escape" && header?.classList.contains("open")) {
+      setMenu(false);
+      menuBtn?.focus();
+    }
   });
   document.querySelectorAll("#primary-nav a").forEach((a) =>
     a.addEventListener("click", () => setMenu(false)),
   );
 
+  // The accessible name always describes the action the button will perform
+  const syncThemeLabel = () => {
+    const dark = document.documentElement.getAttribute("data-theme") === "dark";
+    themeBtn?.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
+  };
+  syncThemeLabel();
+
   themeBtn?.addEventListener("click", () => {
     const root = document.documentElement;
     const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
     root.setAttribute("data-theme", next);
+    syncThemeLabel();
     try {
       localStorage.setItem("theme", next);
     } catch {

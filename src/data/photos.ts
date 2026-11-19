@@ -15,3 +15,8 @@ export interface Photo {
 }
 
 export const photographs: Photo[] = [];
+
+// Optional 1200x630 social preview for the Photography page. Leave undefined to
+// use the site-wide image; set to e.g. "/photos/og-photography.jpg" once a real
+// photograph is available.
+export const photographyOgImage: string | undefined = undefined;

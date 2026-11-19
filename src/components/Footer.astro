@@ -39,9 +39,10 @@ import { NAV, SITE } from "../config";
 
     <div class="footer-bottom">
       <span>© {new Date().getFullYear()} {SITE.name}. All rights reserved.</span>
-      <span>
-        Built with <a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a>
-        · Hosted on Cloudflare Pages
+      <span class="credits">
+        <span>Built with <a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a></span>
+        <span class="sep" aria-hidden="true">·</span>
+        <span>Hosted on Cloudflare Pages</span>
       </span>
     </div>
   </div>
@@ -121,6 +122,12 @@ import { NAV, SITE } from "../config";
     border-top: 1px solid var(--border);
     color: var(--subtle);
     font-size: 0.82rem;
+  }
+
+  .credits {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 2px 10px;
   }
 
   @media (max-width: 760px) {

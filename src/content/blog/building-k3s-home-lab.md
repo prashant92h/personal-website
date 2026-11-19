@@ -12,7 +12,7 @@ featured: true
 draft: true
 ---
 
-My day job is architecting and operating Azure and Linux workloads that stay cost-efficient, secure and available. The home lab is where I get to tinker with Kubernetes, self-hosting, deeper Terraform and GitOps.
+My day job is architecting and operating Azure and Linux workloads that stay cost-efficient, secure and available. The home lab is where I get to tinker with Kubernetes, self-hosting, Terraform and GitOps.
 
 My goal is a lightweight K3s cluster that hosts persistent services, built with the same habits I apply at work: backups, cost awareness and security basics.
 

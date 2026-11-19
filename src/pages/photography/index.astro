@@ -1,23 +1,16 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageHero from "../../components/PageHero.astro";
-import { photographs, photoCategories } from "../../data/photos";
+import { photographs, photoCategories, photographyOgImage } from "../../data/photos";
 
 const hasPhotos = photographs.length > 0;
-const placeholders = [
-  { h: 260, label: "Landscapes" },
-  { h: 340, label: "Wildlife" },
-  { h: 220, label: "Travel" },
-  { h: 300, label: "Nature" },
-  { h: 240, label: "Details" },
-  { h: 320, label: "Moments" },
-];
 ---
 
 <BaseLayout
   title="Photography | Prashant Hegde"
   description="Photographs by Prashant Hegde, an amateur photographer — landscapes, nature, wildlife and travel."
   active="photography"
+  image={photographyOgImage}
 >
   <PageHero
     eyebrow="Photography"
@@ -27,60 +20,56 @@ const placeholders = [
   />
 
   <section class="container gallery-section">
-    <div class="filters" role="group" aria-label="Filter photographs by category">
-      <button type="button" class="chip selected" data-cat="all">All</button>
-      {photoCategories.map((c) => <button type="button" class="chip" data-cat={c}>{c}</button>)}
-    </div>
-
     {hasPhotos ? (
-      <div class="masonry" id="gallery">
-        {photographs.map((photo, i) => (
-          <figure class="photo" data-cat={photo.category} data-index={i}>
-            <button type="button" class="photo-btn" aria-label={`View ${photo.title} full size`}>
-              <img
-                src={photo.image}
-                alt={photo.alt}
-                width={photo.width}
-                height={photo.height}
-                loading="lazy"
-                decoding="async"
-              />
-            </button>
-            <figcaption>
-              <strong>{photo.title}</strong>
-              <span>{photo.location ?? photo.category}</span>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-    ) : (
-      <div class="coming">
-        <div class="masonry skeleton" aria-hidden="true">
-          {placeholders.map((p) => (
-            <div class="ph" style={`height:${p.h}px`}><span>{p.label}</span></div>
+      <>
+        <div class="filters" role="group" aria-label="Filter photographs by category">
+          <button type="button" class="chip selected" data-cat="all" aria-pressed="true">All</button>
+          {photoCategories.map((c) => <button type="button" class="chip" data-cat={c} aria-pressed="false">{c}</button>)}
+        </div>
+        <div class="masonry" id="gallery">
+          {photographs.map((photo, i) => (
+            <figure class="photo" data-cat={photo.category} data-index={i}>
+              <button type="button" class="photo-btn" aria-label={`View ${photo.title} full size`}>
+                <img
+                  src={photo.image}
+                  alt={photo.alt}
+                  width={photo.width}
+                  height={photo.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </button>
+              <figcaption>
+                <strong>{photo.title}</strong>
+                <span>{photo.location ?? photo.category}</span>
+              </figcaption>
+            </figure>
           ))}
         </div>
-        <div class="coming-note card">
-          <span class="pill pill-live">In the making</span>
-          <h2>A collection in the making.</h2>
-          <p>
-            I'm curating my favourite shots from landscapes, wildlife and
-            travels. Check back soon.
-          </p>
-        </div>
+      </>
+    ) : (
+      <div class="coming reveal">
+        <h2>Collection in progress.</h2>
+        <p>
+          I'm curating a small selection of my favourite landscapes, wildlife
+          and travel photographs. The gallery will appear here as I put the
+          collection together.
+        </p>
       </div>
     )}
   </section>
 
-  <dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
-    <button type="button" class="lb-close" aria-label="Close viewer">×</button>
-    <button type="button" class="lb-nav prev" aria-label="Previous photo">‹</button>
-    <figure>
-      <img id="lb-img" alt="" />
-      <figcaption id="lb-cap"></figcaption>
-    </figure>
-    <button type="button" class="lb-nav next" aria-label="Next photo">›</button>
-  </dialog>
+  {hasPhotos && (
+    <dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+      <button type="button" class="lb-close" aria-label="Close viewer">×</button>
+      <button type="button" class="lb-nav prev" aria-label="Previous photo">‹</button>
+      <figure>
+        <img id="lb-img" alt="" />
+        <figcaption id="lb-cap"></figcaption>
+      </figure>
+      <button type="button" class="lb-nav next" aria-label="Next photo">›</button>
+    </dialog>
+  )}
 </BaseLayout>
 
 <style>
@@ -173,52 +162,22 @@ const placeholders = [
     font-size: 0.8rem;
   }
 
-  /* Empty-state skeleton */
+  /* Empty state: one contained message, no fake thumbnails */
   .coming {
-    position: relative;
+    max-width: 640px;
+    padding: 40px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
   }
 
-  .skeleton {
-    opacity: 0.55;
-    -webkit-mask-image: linear-gradient(to bottom, #000 40%, transparent 100%);
-    mask-image: linear-gradient(to bottom, #000 40%, transparent 100%);
+  .coming h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
   }
 
-  .ph {
-    break-inside: avoid;
-    margin-bottom: 18px;
-    display: flex;
-    align-items: flex-end;
-    padding: 16px;
-    border: 1px dashed var(--border-strong);
-    border-radius: var(--radius-lg);
-    background: linear-gradient(135deg, var(--accent-soft), var(--surface-2));
-    color: var(--subtle);
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-  }
-
-  .coming-note {
-    position: absolute;
-    left: 50%;
-    top: 90px;
-    transform: translateX(-50%);
-    width: min(440px, 92%);
-    align-items: center;
-    text-align: center;
-    box-shadow: var(--shadow-md);
-  }
-
-  .coming-note .pill {
-    margin-bottom: 14px;
-  }
-
-  .coming-note h2 {
-    font-size: 1.5rem;
-  }
-
-  .coming-note p {
-    margin-top: 10px;
+  .coming p {
+    margin: 14px 0 0;
+    color: var(--muted);
   }
 
   /* Lightbox */
@@ -311,11 +270,6 @@ const placeholders = [
       columns: 2;
     }
 
-    .coming-note {
-      position: static;
-      transform: none;
-      margin: -40px auto 0;
-    }
   }
 
   @media (max-width: 520px) {
@@ -338,7 +292,10 @@ const placeholders = [
   chips.forEach((chip) => {
     chip.addEventListener("click", () => {
       const cat = chip.dataset.cat;
-      chips.forEach((c) => c.classList.toggle("selected", c === chip));
+      chips.forEach((c) => {
+        c.classList.toggle("selected", c === chip);
+        c.setAttribute("aria-pressed", String(c === chip));
+      });
       photos.forEach((p) => {
         p.hidden = cat !== "all" && p.dataset.cat !== cat;
       });

@@ -57,8 +57,8 @@ export const professionalProjects: Project[] = [
   {
     title: "Platform Engineering & Azure DevOps",
     description:
-      "Azure DevOps, CI/CD and infrastructure automation, working with and managing Terraform-based infrastructure for repeatable and controlled operations.",
-    areas: ["Azure DevOps", "CI/CD", "Terraform (managing)", "Platform engineering"],
+      "Azure DevOps, CI/CD and infrastructure automation, working with Terraform-managed environments for repeatable and controlled operations.",
+    areas: ["Azure DevOps", "CI/CD", "Terraform", "Platform engineering"],
   },
 ];
 
@@ -73,7 +73,7 @@ export const personalProjects: Project[] = [
   {
     title: "Terraform & GitOps Practice",
     description:
-      "Building on my experience managing Terraform-based infrastructure by practising Git-driven workflows and reproducible environments in the lab.",
+      "Practising Git-driven workflows and reproducible environments in the lab, building on day-to-day work with Terraform-managed infrastructure.",
     areas: ["Terraform", "Git", "GitOps", "CI/CD"],
     status: "Exploring",
   },
