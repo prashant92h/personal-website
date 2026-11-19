@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" fill="none">
+  <title>PH monogram</title>
+  <rect width="512" height="512" rx="112" fill="#F4F9F6"/>
+  <path fill="#0B1A12" fill-rule="evenodd" d="M72 96H280V304H144V416H72ZM144 160V240H216V160Z"/>
+  <path fill="#10B981" d="M216 304H280V272H368V96H440V416H368V344H280V416H216Z"/>
+</svg>

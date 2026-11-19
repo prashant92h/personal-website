@@ -1,0 +1,13 @@
+{
+  "name": "Prashant Hegde",
+  "short_name": "Prashant Hegde",
+  "description": "Azure cloud and platform architect with strong Linux expertise.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#060e0a",
+  "theme_color": "#060e0a",
+  "icons": [
+    { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

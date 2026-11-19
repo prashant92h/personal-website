@@ -11,7 +11,7 @@ const { active = "" } = Astro.props;
 <header class="site-header" id="site-header">
   <div class="container header-inner">
     <a class="brand" href="/" aria-label={`${SITE.name} — home`}>
-      <img src="/favicon.svg" alt="" width="36" height="36" />
+      <img src="/logo-ph.svg" alt="" width="44" height="44" />
       <span>{SITE.name}</span>
     </a>
 
@@ -97,18 +97,25 @@ const { active = "" } = Astro.props;
   .brand {
     display: flex;
     align-items: center;
-    gap: 11px;
+    gap: 12px;
     font-family: var(--font-heading);
-    font-size: 1.05rem;
-    font-weight: 650;
+    font-size: 1.15rem;
+    font-weight: 640;
     letter-spacing: -0.02em;
     white-space: nowrap;
   }
 
   .brand img {
-    width: 36px;
-    height: 36px;
-    border-radius: 9px;
+    width: 44px;
+    height: 44px;
+    flex: none;
+    border-radius: 10px;
+  }
+
+  /* The cream container needs a faint edge to separate from the light page background */
+  :global(:root[data-theme="light"]) .brand img {
+    outline: 1px solid rgba(11, 26, 18, 0.14);
+    outline-offset: -1px;
   }
 
   nav {
@@ -204,6 +211,16 @@ const { active = "" } = Astro.props;
   }
 
   @media (max-width: 860px) {
+    .brand {
+      font-size: 1.08rem;
+      gap: 11px;
+    }
+
+    .brand img {
+      width: 40px;
+      height: 40px;
+    }
+
     .menu-btn {
       display: grid;
     }
