@@ -58,6 +58,7 @@ npm run check
 - `src/content/blog/` — Blog articles (set `draft: false` to publish)
 - `src/styles/global.css` — Design tokens, themes and shared UI primitives
 - `public/` — Static assets and Cloudflare `_headers`
+- `public/diagrams/` — Editable SVG diagram masters (PNG exports are generated with `npm run diagrams:build`; see `docs/diagram-system.md`)
 
 ## Adding photographs
 

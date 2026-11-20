@@ -283,42 +283,6 @@ const articleSchema = {
     margin: 28px 0;
   }
 
-  /* Article diagrams: a plain link to the full-size image, no JavaScript */
-  .prose :global(figure.diagram) {
-    margin: 36px 0;
-  }
-
-  .prose :global(figure.diagram a) {
-    display: block;
-    border-radius: var(--radius-lg);
-    cursor: zoom-in;
-  }
-
-  /* Small screens shrink the diagram labels, so say that the full-size image is one tap away */
-  @media (max-width: 680px) {
-    .prose :global(figure.diagram a::after) {
-      content: "Tap to open full size ↗";
-      display: block;
-      margin-top: 10px;
-      color: var(--accent);
-      font-family: var(--font-mono);
-      font-size: 0.74rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      line-height: 1.4;
-    }
-  }
-
-  .prose :global(figure.diagram img) {
-    display: block;
-    width: 100%;
-    height: auto;
-    margin: 0;
-    border: 1px solid var(--border-strong);
-    border-radius: var(--radius-lg);
-    background: var(--code-bg);
-  }
-
   /* TOC */
   .toc {
     position: sticky;

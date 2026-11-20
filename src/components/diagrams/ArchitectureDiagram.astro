@@ -1,0 +1,31 @@
+---
+// Reusable article diagram: semantic figure, responsive, lazy by default, full-size SVG link, no JavaScript.
+// Markup comes from diagram-html.mjs so plain-Markdown articles (via the remark plugin) render identically.
+import { diagramHtml } from "./diagram-html.mjs";
+
+interface Props {
+  /** Editable SVG master, e.g. /diagrams/<slug>/<slug>.svg */
+  src: string;
+  /** Optional SVG shown in the light theme */
+  lightSrc?: string;
+  /** Generated PNG, used as the download target */
+  pngSrc?: string;
+  /** Meaningful description of the information shown, not of its appearance */
+  alt: string;
+  caption?: string;
+  width?: number;
+  height?: number;
+  /** Load eagerly (above the fold). Default is lazy. */
+  eager?: boolean;
+  /** Link to the full-size SVG. Default true. */
+  expandable?: boolean;
+  downloadable?: boolean;
+  downloadSrc?: string;
+  class?: string;
+  id?: string;
+}
+
+const html = diagramHtml(Astro.props);
+---
+
+<Fragment set:html={html} />

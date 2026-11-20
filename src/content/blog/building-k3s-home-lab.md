@@ -23,11 +23,7 @@ I am starting with a single-node cluster. That keeps the initial design understa
 
 > **A small lab should still be easy to operate, recover, and change.**
 
-<figure class="diagram">
-  <a href="/diagrams/building-k3s-home-lab.png" target="_blank" rel="noopener" aria-label="Open the full-size K3s home lab architecture diagram in a new tab">
-    <img src="/diagrams/building-k3s-home-lab.png" width="1536" height="1024" loading="lazy" decoding="async" alt="K3s home lab architecture. Internet traffic passes through a home router and firewall into a single-node K3s cluster on a Linux host, where Traefik ingress routes to workloads, persistent volumes and local storage. Beside it sit operations and automation: Git repository, GitOps, monitoring, backups, patching and certificate management. A dashed future-expansion box shows additional worker nodes and NAS storage, not yet implemented. Five design principles: lightweight, persistent, recoverable, secure basics and cost-aware." />
-  </a>
-</figure>
+![Home-lab architecture showing private access through a home router to a single-node K3s cluster with ingress, workloads, persistent storage, automation, monitoring and backups, plus future worker-node and NAS expansion.](/diagrams/building-k3s-home-lab/building-k3s-home-lab.svg "The initial single-node design keeps the lab understandable while leaving a clear path for future expansion.")
 
 ## Why K3s?
 

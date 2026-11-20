@@ -1,0 +1,98 @@
+/* ==========================================================================
+   Diagram system — presentation for ArchitectureDiagram / remark-diagram.
+   Uses the site's design tokens (global.css); no diagram-specific colours.
+   Selectors are prefixed with `figure.architecture-diagram` so they out-rank
+   the generic article rules (`.prose img`, `.prose a`) without !important.
+   ========================================================================== */
+
+figure.architecture-diagram {
+  margin: clamp(2rem, 5vw, 3rem) 0;
+}
+
+figure.architecture-diagram .architecture-diagram__image-link {
+  position: relative;
+  display: block;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--code-bg);
+  overflow: hidden;
+  text-decoration: none;
+}
+
+figure.architecture-diagram a.architecture-diagram__image-link {
+  cursor: zoom-in;
+  text-decoration: none;
+}
+
+figure.architecture-diagram a.architecture-diagram__image-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: var(--radius-lg);
+}
+
+figure.architecture-diagram img.architecture-diagram__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+}
+
+/* Optional light-theme source: swap by theme, no JavaScript. Dark is the default look. */
+figure.architecture-diagram img.architecture-diagram__image--light {
+  display: none;
+}
+:root:not([data-theme="dark"]) figure.architecture-diagram img.architecture-diagram__image--dark {
+  display: none;
+}
+:root:not([data-theme="dark"]) figure.architecture-diagram img.architecture-diagram__image--light {
+  display: block;
+}
+
+figure.architecture-diagram .architecture-diagram__open {
+  display: none;
+}
+
+figure.architecture-diagram figcaption.architecture-diagram__caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+figure.architecture-diagram .architecture-diagram__caption a {
+  flex: none;
+  color: var(--accent);
+}
+
+/* Small screens shrink the diagram labels: make the full-size SVG obviously one tap away. */
+@media (max-width: 680px) {
+  figure.architecture-diagram {
+    margin: 1.75rem 0;
+  }
+
+  figure.architecture-diagram .architecture-diagram__open {
+    display: block;
+    padding: 0.55rem 0.9rem;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    text-decoration: none;
+  }
+
+  figure.architecture-diagram figcaption.architecture-diagram__caption {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+}
