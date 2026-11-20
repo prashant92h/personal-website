@@ -141,5 +141,5 @@ export const exploring: {
 export const stats = [
   { value: "50+", label: "Enterprise applications", primary: false },
   { value: "$1M+", label: "Cumulative cloud cost savings", primary: true },
-  { value: "13+", label: "Years in cloud & infrastructure", primary: false },
+  { value: "~13", label: "Years in cloud & infrastructure", primary: false },
 ];
