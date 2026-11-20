@@ -8,7 +8,8 @@ const posts = (await getCollection("blog"))
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
 const featuredPost = posts.find((post) => post.data.featured) ?? posts[0];
-const otherPosts = posts.filter((post) => post.id !== featuredPost?.id);
+// The archive lists every published note; the featured one is also highlighted above.
+const archivePosts = posts;
 const categories = [...new Set(posts.map((post) => post.data.category))];
 
 const formatDate = (date: Date) =>
@@ -73,29 +74,25 @@ const formatDate = (date: Date) =>
         </div>
       )}
 
-      {otherPosts.length > 0 ? (
-        <div class="list">
-          {otherPosts.map((post) => (
-            <a class="row" href={`/blog/${post.id}/`} data-cat={post.data.category}>
-              <div>
+      <div class="list">
+        {archivePosts.map((post) => (
+          <a class="row" href={`/blog/${post.id}/`} data-cat={post.data.category}>
+            <div>
+              <div class="row-tags">
                 <span class="tag">{post.data.category}</span>
-                <h3>{post.data.title}</h3>
-                <p>{post.data.description}</p>
-                <div class="meta">
-                  <span>{formatDate(post.data.pubDate)}</span>
-                  {post.data.readingTime && <span>{post.data.readingTime} min read</span>}
-                </div>
+                {post.id === featuredPost?.id && <span class="featured-flag">Featured</span>}
               </div>
-              <span class="arrow" aria-hidden="true">→</span>
-            </a>
-          ))}
-        </div>
-      ) : (
-        <div class="card empty">
-          <h3>That's everything so far.</h3>
-          <p>New notes will appear here as they are published.</p>
-        </div>
-      )}
+              <h3>{post.data.title}</h3>
+              <p>{post.data.description}</p>
+              <div class="meta">
+                <span>{formatDate(post.data.pubDate)}</span>
+                {post.data.readingTime && <span>{post.data.readingTime} min read</span>}
+              </div>
+            </div>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        ))}
+      </div>
     </section>
     )}
   </div>
@@ -213,6 +210,21 @@ const formatDate = (date: Date) =>
 
   .row:hover {
     padding-inline: 14px;
+  }
+
+  .row-tags {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .featured-flag {
+    color: var(--subtle);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 
   .row h3 {
