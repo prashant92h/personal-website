@@ -20,6 +20,7 @@ const blog = defineCollection({
       "Linux",
       "AI Infrastructure",
       "Cost Optimization",
+      "FinOps",
       "Security",
       "Availability",
       "Photography",
