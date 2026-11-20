@@ -40,6 +40,12 @@ Good architecture should not only make an application deployable.
 
 **It should make the application operable.**
 
+<figure class="diagram">
+  <a href="/diagrams/architecture-that-works-beyond-go-live.png" target="_blank" rel="noopener" aria-label="Open the full-size lifecycle diagram in a new tab">
+    <img src="/diagrams/architecture-that-works-beyond-go-live.png" width="1536" height="1024" loading="lazy" decoding="async" alt="Lifecycle diagram in three bands. Day 1 runs design, build, deploy. Day 2+ cycles through operate, monitor, patch, secure, automate and optimize. Evolve and retire covers recover, evolve and retire. Each band lists its outcomes, from well-architected to clean and compliant." />
+  </a>
+</figure>
+
 ---
 
 ## Go-live is not the finish line

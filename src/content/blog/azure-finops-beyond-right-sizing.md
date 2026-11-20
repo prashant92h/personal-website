@@ -29,6 +29,12 @@ The result did not come from one recommendation, one Azure service, or one autom
 
 > **Cloud waste is rarely caused by one badly configured resource. It is usually the accumulated result of architecture, usage, and operational decisions that no longer match reality.**
 
+<figure class="diagram">
+  <a href="/diagrams/azure-finops-beyond-right-sizing.png" target="_blank" rel="noopener" aria-label="Open the full-size FinOps operating loop diagram in a new tab">
+    <img src="/diagrams/azure-finops-beyond-right-sizing.png" width="1536" height="1024" loading="lazy" decoding="async" alt="Azure FinOps operating loop. Inventory, measure and understand lead to optimize, then a review and approval gate, then implement and validate, with a continuous improvement loop back to the start. Optimize covers removing waste, reducing runtime, right-sizing, optimizing storage and disaster recovery, and committing to reservations last. Outcomes: $1M+ cumulative contribution to Azure cost savings, reliability protected, stronger collaboration and a repeatable operating model." />
+  </a>
+</figure>
+
 ## The challenge
 
 Enterprise Azure estates change continuously.
