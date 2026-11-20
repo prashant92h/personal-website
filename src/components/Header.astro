@@ -304,6 +304,11 @@ const { active = "" } = Astro.props;
     themeBtn?.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
   };
   syncThemeLabel();
+  // Also covers theme changes that don't come from this button (e.g. the system setting)
+  new MutationObserver(syncThemeLabel).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["data-theme"],
+  });
 
   themeBtn?.addEventListener("click", () => {
     const root = document.documentElement;
