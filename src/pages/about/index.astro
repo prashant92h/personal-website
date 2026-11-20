@@ -2,7 +2,9 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageHero from "../../components/PageHero.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
+import ConnectCards from "../../components/ConnectCards.astro";
 import { stats } from "../../data/projects";
+import { photographs } from "../../data/photos";
 
 const experience = [
   {
@@ -43,6 +45,9 @@ const skillGroups = [
 ];
 
 const growingAreas = ["AI agents", "GitHub Copilot", "GitOps", "AWS fundamentals"];
+
+// Shown from the same data as the Photography page; nothing is shown until real photos are added there.
+const featuredPhotos = photographs.slice(0, 4);
 ---
 
 <BaseLayout
@@ -156,17 +161,40 @@ const growingAreas = ["AI agents", "GitHub Copilot", "GitOps", "AWS fundamentals
     </div>
   </section>
 
-  <section class="container">
-    <div class="next reveal">
-      <p class="eyebrow">Outside work</p>
-      <h2>Still learning, still tinkering.</h2>
-      <p>
-        I like understanding how things run. At home that means breaking and
-        rebuilding a Kubernetes lab, and photographing landscapes, wildlife
-        and travel moments as an amateur.
-      </p>
-      <a class="btn btn-primary" href="/contact/">Get in touch</a>
-    </div>
+  <section class="section container" id="beyond">
+    <SectionHeading
+      eyebrow="Outside work"
+      title="Beyond the Cloud"
+      description="I like understanding how things run. After hours that means rebuilding a Kubernetes lab, and photographing landscapes, wildlife and travel moments as an amateur."
+    />
+    {featuredPhotos.length > 0 && (
+      <div class="photo-strip">
+        {featuredPhotos.map((photo, i) => (
+          <figure class="photo reveal" style={`--d:${i}`}>
+            <a href="/photography/" tabindex="-1" aria-hidden="true">
+              <img
+                src={photo.image}
+                alt=""
+                width={photo.width}
+                height={photo.height}
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+          </figure>
+        ))}
+      </div>
+    )}
+    <a class="text-link explore" href="/photography/">Explore Photography <span aria-hidden="true">→</span></a>
+  </section>
+
+  <section class="section container" id="connect">
+    <SectionHeading
+      eyebrow="Get in touch"
+      title="Let's Connect"
+      description="Happy to talk Azure, Linux, cost optimization, security and reliability, DevOps pipelines, home-lab tinkering or photography."
+    />
+    <ConnectCards level={3} />
   </section>
 </BaseLayout>
 
@@ -325,24 +353,36 @@ const growingAreas = ["AI agents", "GitHub Copilot", "GitOps", "AWS fundamentals
     font-size: 1.1rem;
   }
 
-  /* Next */
-  .next {
-    margin-top: 56px;
-    padding: 64px 40px;
-    background: var(--surface-2);
+  /* Beyond the Cloud */
+  .photo-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin-bottom: 8px;
+  }
+
+  .photo {
+    margin: 0;
+    overflow: hidden;
     border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
   }
 
-  .next h2 {
-    font-size: clamp(1.7rem, 3.4vw, 2.5rem);
-    max-width: 20ch;
+  .photo a,
+  .photo img {
+    display: block;
+    width: 100%;
   }
 
-  .next p:not(.eyebrow) {
-    color: var(--muted);
-    max-width: 640px;
-    margin: 16px 0 26px;
+  .photo img {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    height: auto;
+  }
+
+  .explore {
+    margin-top: 22px;
   }
 
   .leadership {
@@ -367,9 +407,6 @@ const growingAreas = ["AI agents", "GitHub Copilot", "GitOps", "AWS fundamentals
     }
     .dot {
       left: -28px;
-    }
-    .next {
-      padding: 36px 24px;
     }
     .stat {
       padding: 18px;

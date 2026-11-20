@@ -25,13 +25,6 @@ const { active = "" } = Astro.props;
           {item.label}
         </a>
       ))}
-      <a
-        class:list={["nav-contact", { active: active === "contact" }]}
-        href="/contact/"
-        aria-current={active === "contact" ? "page" : undefined}
-      >
-        Contact
-      </a>
     </nav>
 
     <div class="actions">
@@ -49,8 +42,6 @@ const { active = "" } = Astro.props;
           <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
         </svg>
       </button>
-
-      <a class="btn btn-primary cta" href="/contact/" aria-current={active === "contact" ? "page" : undefined}>Contact</a>
 
       <button
         class="icon-btn menu-btn"
@@ -144,20 +135,10 @@ const { active = "" } = Astro.props;
     background: var(--accent-soft);
   }
 
-  /* Desktop shows the Contact button instead; the mobile menu lists it as a link */
-  .nav-contact {
-    display: none;
-  }
-
   .actions {
     display: flex;
     align-items: center;
     gap: 10px;
-  }
-
-  .cta {
-    padding: 9px 18px;
-    font-size: 0.88rem;
   }
 
   .icon-btn {
@@ -223,14 +204,6 @@ const { active = "" } = Astro.props;
 
     .menu-btn {
       display: grid;
-    }
-
-    .cta {
-      display: none;
-    }
-
-    .nav-contact {
-      display: block;
     }
 
     .actions {

@@ -29,10 +29,11 @@ export const SITE = {
 } as const;
 
 // Visible labels only: routes (/projects/, /blog/) stay stable for backlinks.
+// Photography and Contact are not primary navigation: they are reached from the
+// About page ("Beyond the Cloud" and "Let's Connect") and the footer.
 export const NAV = [
   { label: "Work", href: "/projects/", id: "projects" },
   { label: "Field Notes", href: "/blog/", id: "blog" },
   { label: "Lab", href: "/lab/", id: "lab" },
-  { label: "Photography", href: "/photography/", id: "photography" },
   { label: "About", href: "/about/", id: "about" },
 ] as const;
